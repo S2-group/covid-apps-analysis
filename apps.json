@@ -1,0 +1,948 @@
+{
+    "non_covid_apps": [
+        {
+            "corresponding_covid_app_id": "at.roteskreuz.stopcorona",
+            "store_country": "at",
+            "store_lang": "de",
+            "id": "at.credoweb.android",
+            "latest_crawled_version": "2.4.6",
+            "latest_crawl": 1603737242
+        },
+        {
+            "corresponding_covid_app_id": "au.gov.act.health.checkin",
+            "store_country": "au",
+            "store_lang": "en",
+            "id": "com.cube.gdpc.aus",
+            "latest_crawled_version": "3.3.0",
+            "latest_crawl": 1603737243
+        },
+        {
+            "corresponding_covid_app_id": "au.gov.health.covid19",
+            "store_country": "au",
+            "store_lang": "en",
+            "id": "au.org.pafoundation.ropah_guides",
+            "latest_crawled_version": "1.1",
+            "latest_crawl": 1603737244
+        },
+        {
+            "corresponding_covid_app_id": "au.gov.health.covidsafe",
+            "store_country": "au",
+            "store_lang": "en",
+            "id": "au.org.nps.medicinelistplus",
+            "latest_crawled_version": "3.2.8",
+            "latest_crawl": 1603737250
+        },
+        {
+            "corresponding_covid_app_id": "com.myaus",
+            "store_country": "au",
+            "store_lang": "en",
+            "id": "base.com.healthsite.queanbeyan",
+            "latest_crawled_version": "2.0",
+            "latest_crawl": 1603737251
+        },
+        {
+            "corresponding_covid_app_id": "ca.albertahealthservices.contacttracing",
+            "store_country": "ca",
+            "store_lang": "en",
+            "id": "ca.blood.giveblood",
+            "latest_crawled_version": "2.16.4",
+            "latest_crawl": 1603737253
+        },
+        {
+            "corresponding_covid_app_id": "ca.bc.gov.health.hlbc.COVID19",
+            "store_country": "ca",
+            "store_lang": "en",
+            "id": "ca.on.ohcow.msda",
+            "latest_crawled_version": "1.0.5",
+            "latest_crawl": 1603737256
+        },
+        {
+            "corresponding_covid_app_id": "ca.gc.hcsc.canada.covid19",
+            "store_country": "ca",
+            "store_lang": "en",
+            "id": "ca.gc.veterans.ptsd.ptsdcoach",
+            "latest_crawled_version": "2.0",
+            "latest_crawl": 1603737260
+        },
+        {
+            "corresponding_covid_app_id": "com.coronacheck.haugxhaug.testyourcorona",
+            "store_country": "de",
+            "store_lang": "de",
+            "id": "de.hector.clubapp.gym4all",
+            "latest_crawled_version": "2.8.3",
+            "latest_crawl": 1603737261
+        },
+        {
+            "corresponding_covid_app_id": "com.designit.covid_19",
+            "store_country": "de",
+            "store_lang": "de",
+            "id": "de.credoweb.android",
+            "latest_crawled_version": "2.4.6",
+            "latest_crawl": 1603737274
+        },
+        {
+            "corresponding_covid_app_id": "de.bssd.covid19",
+            "store_country": "de",
+            "store_lang": "de",
+            "id": "de.hexal.pollenflug",
+            "latest_crawled_version": "2.7",
+            "latest_crawl": 1603737284
+        },
+        {
+            "corresponding_covid_app_id": "de.kreativzirkel.coronika",
+            "store_country": "de",
+            "store_lang": "de",
+            "id": "de.healthlab.erkaeltung",
+            "latest_crawled_version": "1.4.4",
+            "latest_crawl": 1603737287
+        },
+        {
+            "corresponding_covid_app_id": "de.rki.coronadatenspende",
+            "store_country": "de",
+            "store_lang": "de",
+            "id": "de.mediafoundation.brbnorden",
+            "latest_crawled_version": "2.0.0",
+            "latest_crawl": 1603737295
+        },
+        {
+            "corresponding_covid_app_id": "de.rki.coronawarnapp",
+            "store_country": "de",
+            "store_lang": "de",
+            "id": "de.doctronic.mobilexaver.daz",
+            "latest_crawled_version": "2.3",
+            "latest_crawl": 1603737297
+        },
+        {
+            "corresponding_covid_app_id": "com.netcompany.smittestop_exposure_notification",
+            "store_country": "dk",
+            "store_lang": "dk",
+            "id": "dk.kalorieopslag.symdir",
+            "latest_crawled_version": "2.0.7",
+            "latest_crawl": 1603737303
+        },
+        {
+            "corresponding_covid_app_id": "cat.gencat.mobi.confinApp",
+            "store_country": "es",
+            "store_lang": "es",
+            "id": "es.youaremarketing.alertaETS",
+            "latest_crawled_version": "6.1",
+            "latest_crawl": 1603737308
+        },
+        {
+            "corresponding_covid_app_id": "cat.gencat.mobi.StopCovid19Cat",
+            "store_country": "es",
+            "store_lang": "es",
+            "id": "es.infomed.agendamobile",
+            "latest_crawled_version": "1.0.0",
+            "latest_crawl": 1603737314
+        },
+        {
+            "corresponding_covid_app_id": "com.erictelm2m.colabora",
+            "store_country": "es",
+            "store_lang": "es",
+            "id": "com.imaidea.norgine.coloncop",
+            "latest_crawled_version": "1.0.1",
+            "latest_crawl": 1603737338
+        },
+        {
+            "corresponding_covid_app_id": "es.gob.asistenciacovid19",
+            "store_country": "es",
+            "store_lang": "es",
+            "id": "es.bioderma.biodermagame",
+            "latest_crawled_version": "2.0.8",
+            "latest_crawl": 1603737350
+        },
+        {
+            "corresponding_covid_app_id": "es.gva.coronavirus",
+            "store_country": "es",
+            "store_lang": "es",
+            "id": "com.fitnessmobileapps.silenciobarcelona",
+            "latest_crawled_version": "4.2.9",
+            "latest_crawl": 1603723748
+        },
+        {
+            "corresponding_covid_app_id": "es.gva.responde",
+            "store_country": "es",
+            "store_lang": "es",
+            "id": "com.proyecto.clubnataciobarcelona",
+            "latest_crawled_version": "3.67.29",
+            "latest_crawl": 1603737352
+        },
+        {
+            "corresponding_covid_app_id": "es.navarra.coronatestnavarra",
+            "store_country": "es",
+            "store_lang": "es",
+            "id": "es.bsc.earthscience.caliope",
+            "latest_crawled_version": "Var\u00eda seg\u00fan el dispositivo.",
+            "latest_crawl": 1603737354
+        },
+        {
+            "corresponding_covid_app_id": "org.madrid.CoronaMadrid",
+            "store_country": "es",
+            "store_lang": "es",
+            "id": "es.jcajrc.ibolsatrabajosas20",
+            "latest_crawled_version": "2.1.99",
+            "latest_crawl": 1603737354
+        },
+        {
+            "corresponding_covid_app_id": "com.ambulis.aphm.covid",
+            "store_country": "fr",
+            "store_lang": "fr",
+            "id": "fr.mesoigner.app",
+            "latest_crawled_version": "1.10.4",
+            "latest_crawl": 1603737363
+        },
+        {
+            "corresponding_covid_app_id": "fr.aphp.covidom",
+            "store_country": "fr",
+            "store_lang": "fr",
+            "id": "fr.leadersante.main",
+            "latest_crawled_version": "1.41.0",
+            "latest_crawl": 1603737367
+        },
+        {
+            "corresponding_covid_app_id": "fr.gouv.android.stopcovid",
+            "store_country": "fr",
+            "store_lang": "fr",
+            "id": "fr.ap_hm.myaphm",
+            "latest_crawled_version": "1.2.0.0",
+            "latest_crawl": 1603737370
+        },
+        {
+            "corresponding_covid_app_id": "org.crf.minutis",
+            "store_country": "fr",
+            "store_lang": "fr",
+            "id": "fr.infostrates.dailypso",
+            "latest_crawled_version": "2.0.3",
+            "latest_crawl": 1603737376
+        },
+        {
+            "corresponding_covid_app_id": "is.landlaeknir.rakning",
+            "store_country": "is",
+            "store_lang": "is",
+            "id": "com.retinarisk",
+            "latest_crawled_version": "2.1.43",
+            "latest_crawl": 1603737376
+        },
+        {
+            "corresponding_covid_app_id": "com.intellicare.covid",
+            "store_country": "it",
+            "store_lang": "it",
+            "id": "it.androweb.SexOS",
+            "latest_crawled_version": "2.0",
+            "latest_crawl": 1603737382
+        },
+        {
+            "corresponding_covid_app_id": "com.siciliasicura.app",
+            "store_country": "it",
+            "store_lang": "it",
+            "id": "it.fasv.videoinsight",
+            "latest_crawled_version": "2.0.4",
+            "latest_crawl": 1603737384
+        },
+        {
+            "corresponding_covid_app_id": "it.adl.aslroma3.covid19.app",
+            "store_country": "it",
+            "store_lang": "it",
+            "id": "it.farmacialevorato",
+            "latest_crawled_version": "1.4.0",
+            "latest_crawl": 1603737387
+        },
+        {
+            "corresponding_covid_app_id": "it.lispa.sire.app.mobile.allertalom",
+            "store_country": "it",
+            "store_lang": "it",
+            "id": "it.xchannel.cnop",
+            "latest_crawled_version": "2.3.0",
+            "latest_crawl": 1603737390
+        },
+        {
+            "corresponding_covid_app_id": "it.ministerodellasalute.immuni",
+            "store_country": "it",
+            "store_lang": "it",
+            "id": "it.dr.prontuariofarmaceutico",
+            "latest_crawled_version": "1.0",
+            "latest_crawl": 1603737390
+        },
+        {
+            "corresponding_covid_app_id": "it.regione.sardegna.autorizzazionicovid19",
+            "store_country": "it",
+            "store_lang": "it",
+            "id": "it.nealogic.energylive",
+            "latest_crawled_version": "2.2",
+            "latest_crawl": 1603737394
+        },
+        {
+            "corresponding_covid_app_id": "it.softmining.projects.covid19.savelifestyle",
+            "store_country": "it",
+            "store_lang": "it",
+            "id": "it.codeatlas.tmtworld.congress",
+            "latest_crawled_version": "1.0.5",
+            "latest_crawl": 1603737396
+        },
+        {
+            "corresponding_covid_app_id": "jp.co.maff.maffapp",
+            "store_country": "jp",
+            "store_lang": "jp",
+            "id": "jp.co.sportsoasis.webgym",
+            "latest_crawled_version": "2.1.2",
+            "latest_crawl": 1603737405
+        },
+        {
+            "corresponding_covid_app_id": "jp.go.mhlw.covid19radar",
+            "store_country": "jp",
+            "store_lang": "jp",
+            "id": "jp.gr.java_conf.fum.android.stepwalk",
+            "latest_crawled_version": "3.44",
+            "latest_crawl": 1603737415
+        },
+        {
+            "corresponding_covid_app_id": "nl.focuscura.beeldbelapp",
+            "store_country": "nl",
+            "store_lang": "nl",
+            "id": "nl.stichtingmelanoom.huidmonitor",
+            "latest_crawled_version": "1.1.4",
+            "latest_crawl": 1603737419
+        },
+        {
+            "corresponding_covid_app_id": "nl.rivm.lciapp",
+            "store_country": "nl",
+            "store_lang": "nl",
+            "id": "nl.boomerweb.medicatiecontrolecross",
+            "latest_crawled_version": "1.14.2",
+            "latest_crawl": 1603737422
+        },
+        {
+            "corresponding_covid_app_id": "pt.min_saude.spms.mysns",
+            "store_country": "pt",
+            "store_lang": "pt",
+            "id": "pt.hospitaldaluz",
+            "latest_crawled_version": "2.73",
+            "latest_crawl": 1603737423
+        },
+        {
+            "corresponding_covid_app_id": "ru.altarix.mos.pgu",
+            "store_country": "ru",
+            "store_lang": "ru",
+            "id": "ru.watchmyph.analogilekarstv",
+            "latest_crawled_version": "2.4.3",
+            "latest_crawl": 1603737428
+        },
+        {
+            "corresponding_covid_app_id": "ru.mos.app",
+            "store_country": "ru",
+            "store_lang": "ru",
+            "id": "ru.medzdrav.android.client",
+            "latest_crawled_version": "2.12.1",
+            "latest_crawl": 1603737433
+        },
+        {
+            "corresponding_covid_app_id": "ru.mos.polls",
+            "store_country": "ru",
+            "store_lang": "ru",
+            "id": "ru.pharmbook.drugs.lite",
+            "latest_crawled_version": "1.7.11",
+            "latest_crawl": 1603737436
+        },
+        {
+            "corresponding_covid_app_id": "ru.mos.socmon",
+            "store_country": "ru",
+            "store_lang": "ru",
+            "id": "ru.harmonicsoft.caloriecounter",
+            "latest_crawled_version": "5.33",
+            "latest_crawl": 1603737447
+        },
+        {
+            "corresponding_covid_app_id": "appinventor.ai_david_taylor.Coronavirus_help2020",
+            "store_country": "uk",
+            "store_lang": "en",
+            "id": "uk.co.well.pharmacy",
+            "latest_crawled_version": "1.5594",
+            "latest_crawl": 1603737448
+        },
+        {
+            "corresponding_covid_app_id": "net.hscni.covid19ni",
+            "store_country": "uk",
+            "store_lang": "en",
+            "id": "uk.ac.dur.drex",
+            "latest_crawled_version": "2.0.1",
+            "latest_crawl": 1603737455
+        },
+        {
+            "corresponding_covid_app_id": "uk.nhs.covid19.production",
+            "store_country": "uk",
+            "store_lang": "en",
+            "id": "co.uk.activa",
+            "latest_crawled_version": "2.4.0",
+            "latest_crawl": 1603737459
+        },
+        {
+            "corresponding_covid_app_id": "com.proudcrowd.care",
+            "store_country": "us",
+            "store_lang": "en",
+            "id": "us.visiomed.android.mytens",
+            "latest_crawled_version": "2.1.4",
+            "latest_crawl": 1603737465
+        },
+        {
+            "corresponding_covid_app_id": "com.proudcrowd.exposure",
+            "store_country": "us",
+            "store_lang": "en",
+            "id": "com.mjn.us.hcp.productguide",
+            "latest_crawled_version": "1.0.1",
+            "latest_crawl": 1603737474
+        },
+        {
+            "corresponding_covid_app_id": "com.ri.crushcovid",
+            "store_country": "us",
+            "store_lang": "en",
+            "id": "co.heydoctor.android",
+            "latest_crawled_version": "2.7.0",
+            "latest_crawl": 1603737483
+        },
+        {
+            "corresponding_covid_app_id": "com.ri.crushcovid",
+            "store_country": "us",
+            "store_lang": "en",
+            "id": "com.motionvibe.calfit",
+            "latest_crawled_version": "4.8.3",
+            "latest_crawl": 1603737491
+        },
+        {
+            "corresponding_covid_app_id": "com.shield.CombatCovidPBC",
+            "store_country": "us",
+            "store_lang": "en",
+            "id": "gov.pa.dhs.compassmobile",
+            "latest_crawled_version": "6.0.0.0",
+            "latest_crawl": 1603737506
+        },
+        {
+            "corresponding_covid_app_id": "gov.azdhs.covidwatch.android",
+            "store_country": "us",
+            "store_lang": "en",
+            "id": "gov.harriscountytx.harriscountypublichealth",
+            "latest_crawled_version": "4.1.0",
+            "latest_crawl": 1603737519
+        },
+        {
+            "corresponding_covid_app_id": "gov.cdc.general",
+            "store_country": "us",
+            "store_lang": "en",
+            "id": "com.freestylelibre.app.us",
+            "latest_crawled_version": "2.2.2",
+            "latest_crawl": 1603737522
+        },
+        {
+            "corresponding_covid_app_id": "gov.de.covidtracker",
+            "store_country": "us",
+            "store_lang": "en",
+            "id": "gov.in.isdh.inwic",
+            "latest_crawled_version": "3.0",
+            "latest_crawl": 1603737531
+        },
+        {
+            "corresponding_covid_app_id": "gov.fema.mobile.android",
+            "store_country": "us",
+            "store_lang": "en",
+            "id": "com.ascensia.abound.us",
+            "latest_crawled_version": "1.12.0-rc.2",
+            "latest_crawl": 1603737538
+        },
+        {
+            "corresponding_covid_app_id": "gov.michigan.MiCovidExposure",
+            "store_country": "us",
+            "store_lang": "en",
+            "id": "gov.nyc.hra.SelfService",
+            "latest_crawled_version": "2.4",
+            "latest_crawl": 1603737549
+        },
+        {
+            "corresponding_covid_app_id": "gov.nv.dhhs.en",
+            "store_country": "us",
+            "store_lang": "en",
+            "id": "gov.medicare.coverage",
+            "latest_crawled_version": "2.1.20",
+            "latest_crawl": 1603737550
+        },
+        {
+            "corresponding_covid_app_id": "gov.vdh.exposurenotification",
+            "store_country": "us",
+            "store_lang": "en",
+            "id": "gov.hhs.samhsa.app.bullying",
+            "latest_crawled_version": "2.1",
+            "latest_crawl": 1603737553
+        },
+        {
+            "corresponding_covid_app_id": "org.pathcheck.guam.bt",
+            "store_country": "us",
+            "store_lang": "en",
+            "id": "com.and.schedules.nwnc",
+            "latest_crawled_version": "1.0.6",
+            "latest_crawl": 1603737561
+        },
+        {
+            "corresponding_covid_app_id": "de.xikolo.openwho",
+            "store_country": "au",
+            "store_lang": "en",
+            "id": "com.onefitstop.plc",
+            "latest_crawled_version": "11.0",
+            "latest_crawl": 1603737563
+        },
+        {
+            "corresponding_covid_app_id": "org.who.infoapp",
+            "store_country": "uk",
+            "store_lang": "en",
+            "id": "com.myhealthadvisor",
+            "latest_crawled_version": "3.0",
+            "latest_crawl": 1603737570
+        }
+    ],
+    "covid_apps": [
+        {
+            "id": "at.roteskreuz.stopcorona",
+            "store_country": "at",
+            "store_lang": "de",
+            "latest_crawled_version": "2.0.5.1081-QA_250",
+            "latest_crawl": 1603527475
+        },
+        {
+            "id": "au.gov.health.covidsafe",
+            "store_country": "au",
+            "store_lang": "en",
+            "latest_crawled_version": "1.13.0",
+            "latest_crawl": 1603526665
+        },
+        {
+            "id": "org.who.infoapp",
+            "store_country": "au",
+            "store_lang": "en",
+            "latest_crawled_version": "3.1",
+            "latest_crawl": 1603526735
+        },
+        {
+            "id": "au.gov.health.covid19",
+            "store_country": "au",
+            "store_lang": "en",
+            "latest_crawled_version": "1.4.9",
+            "latest_crawl": 1603526843
+        },
+        {
+            "id": "com.myaus",
+            "store_country": "au",
+            "store_lang": "en",
+            "latest_crawled_version": "38",
+            "latest_crawl": 1603526992
+        },
+        {
+            "id": "de.xikolo.openwho",
+            "store_country": "au",
+            "store_lang": "en",
+            "latest_crawled_version": "3.6",
+            "latest_crawl": 1603526997
+        },
+        {
+            "id": "au.gov.act.health.checkin",
+            "store_country": "au",
+            "store_lang": "en",
+            "latest_crawled_version": "1.3.2",
+            "latest_crawl": 1603527297
+        },
+        {
+            "id": "ca.bc.gov.health.hlbc.COVID19",
+            "store_country": "ca",
+            "store_lang": "en",
+            "latest_crawled_version": "1.27.0",
+            "latest_crawl": 1603526151
+        },
+        {
+            "id": "ca.albertahealthservices.contacttracing",
+            "store_country": "ca",
+            "store_lang": "en",
+            "latest_crawled_version": "1.4.0",
+            "latest_crawl": 1603526162
+        },
+        {
+            "id": "ca.gc.hcsc.canada.covid19",
+            "store_country": "ca",
+            "store_lang": "en",
+            "latest_crawled_version": "4.11.0",
+            "latest_crawl": 1603526229
+        },
+        {
+            "id": "de.rki.coronadatenspende",
+            "store_country": "de",
+            "store_lang": "de",
+            "latest_crawled_version": "2.1.0",
+            "latest_crawl": 1603525446
+        },
+        {
+            "id": "de.bssd.covid19",
+            "store_country": "de",
+            "store_lang": "de",
+            "latest_crawled_version": "4120.7.01",
+            "latest_crawl": 1603525449
+        },
+        {
+            "id": "com.designit.covid_19",
+            "store_country": "de",
+            "store_lang": "de",
+            "latest_crawled_version": "1.0.0",
+            "latest_crawl": 1603525458
+        },
+        {
+            "id": "de.kreativzirkel.coronika",
+            "store_country": "de",
+            "store_lang": "de",
+            "latest_crawled_version": "1.6.0",
+            "latest_crawl": 1603525669
+        },
+        {
+            "id": "com.coronacheck.haugxhaug.testyourcorona",
+            "store_country": "de",
+            "store_lang": "de",
+            "latest_crawled_version": "1.1",
+            "latest_crawl": 1603525722
+        },
+        {
+            "id": "de.rki.coronawarnapp",
+            "store_country": "de",
+            "store_lang": "de",
+            "latest_crawled_version": "1.5.0",
+            "latest_crawl": 1603525947
+        },
+        {
+            "id": "com.netcompany.smittestop_exposure_notification",
+            "store_country": "dk",
+            "store_lang": "dk",
+            "latest_crawled_version": "1.1",
+            "latest_crawl": 1603527589
+        },
+        {
+            "id": "com.erictelm2m.colabora",
+            "store_country": "es",
+            "store_lang": "es",
+            "latest_crawled_version": "4.1",
+            "latest_crawl": 1603526022
+        },
+        {
+            "id": "cat.gencat.mobi.StopCovid19Cat",
+            "store_country": "es",
+            "store_lang": "es",
+            "latest_crawled_version": "2.1.0",
+            "latest_crawl": 1603526031
+        },
+        {
+            "id": "cat.gencat.mobi.confinApp",
+            "store_country": "es",
+            "store_lang": "es",
+            "latest_crawled_version": "1.0.0",
+            "latest_crawl": 1603526031
+        },
+        {
+            "id": "es.gva.responde",
+            "store_country": "es",
+            "store_lang": "es",
+            "latest_crawled_version": "1.0.10",
+            "latest_crawl": 1603526037
+        },
+        {
+            "id": "org.madrid.CoronaMadrid",
+            "store_country": "es",
+            "store_lang": "es",
+            "latest_crawled_version": "1.1.0",
+            "latest_crawl": 1603526040
+        },
+        {
+            "id": "es.gva.coronavirus",
+            "store_country": "es",
+            "store_lang": "es",
+            "latest_crawled_version": "1.2.0",
+            "latest_crawl": 1603526044
+        },
+        {
+            "id": "es.gob.asistenciacovid19",
+            "store_country": "es",
+            "store_lang": "es",
+            "latest_crawled_version": "1.3.1",
+            "latest_crawl": 1603526052
+        },
+        {
+            "id": "es.navarra.coronatestnavarra",
+            "store_country": "es",
+            "store_lang": "es",
+            "latest_crawled_version": "2.5",
+            "latest_crawl": 1603526064
+        },
+        {
+            "id": "org.crf.minutis",
+            "store_country": "fr",
+            "store_lang": "fr",
+            "latest_crawled_version": "2.0.3",
+            "latest_crawl": 1603525214
+        },
+        {
+            "id": "fr.aphp.covidom",
+            "store_country": "fr",
+            "store_lang": "fr",
+            "latest_crawled_version": "1.5.21",
+            "latest_crawl": 1603525224
+        },
+        {
+            "id": "com.ambulis.aphm.covid",
+            "store_country": "fr",
+            "store_lang": "fr",
+            "latest_crawled_version": "1.2.0",
+            "latest_crawl": 1603525228
+        },
+        {
+            "id": "fr.gouv.android.stopcovid",
+            "store_country": "fr",
+            "store_lang": "fr",
+            "latest_crawled_version": "2.0.1",
+            "latest_crawl": 1603525352
+        },
+        {
+            "id": "is.landlaeknir.rakning",
+            "store_country": "is",
+            "store_lang": "is",
+            "latest_crawled_version": "2.1.2",
+            "latest_crawl": 1603527609
+        },
+        {
+            "id": "it.softmining.projects.covid19.savelifestyle",
+            "store_country": "it",
+            "store_lang": "it",
+            "latest_crawled_version": "5.1",
+            "latest_crawl": 1603524955
+        },
+        {
+            "id": "it.lispa.sire.app.mobile.allertalom",
+            "store_country": "it",
+            "store_lang": "it",
+            "latest_crawled_version": "1.7.0",
+            "latest_crawl": 1603524959
+        },
+        {
+            "id": "com.intellicare.covid",
+            "store_country": "it",
+            "store_lang": "it",
+            "latest_crawled_version": "1.0.17",
+            "latest_crawl": 1603524962
+        },
+        {
+            "id": "com.siciliasicura.app",
+            "store_country": "it",
+            "store_lang": "it",
+            "latest_crawled_version": "7.5",
+            "latest_crawl": 1603524971
+        },
+        {
+            "id": "it.adl.aslroma3.covid19.app",
+            "store_country": "it",
+            "store_lang": "it",
+            "latest_crawled_version": "1.0.4",
+            "latest_crawl": 1603524979
+        },
+        {
+            "id": "it.ministerodellasalute.immuni",
+            "store_country": "it",
+            "store_lang": "it",
+            "latest_crawled_version": "1.5.0",
+            "latest_crawl": 1603524991
+        },
+        {
+            "id": "it.regione.sardegna.autorizzazionicovid19",
+            "store_country": "it",
+            "store_lang": "it",
+            "latest_crawled_version": "1.3.7",
+            "latest_crawl": 1603524998
+        },
+        {
+            "id": "jp.co.maff.maffapp",
+            "store_country": "jp",
+            "store_lang": "jp",
+            "latest_crawled_version": "1.0.4",
+            "latest_crawl": 1603526349
+        },
+        {
+            "id": "jp.go.mhlw.covid19radar",
+            "store_country": "jp",
+            "store_lang": "jp",
+            "latest_crawled_version": "1.1.4",
+            "latest_crawl": 1603526355
+        },
+        {
+            "id": "nl.rivm.lciapp",
+            "store_country": "nl",
+            "store_lang": "nl",
+            "latest_crawled_version": "1.27.4",
+            "latest_crawl": 1603525051
+        },
+        {
+            "id": "nl.focuscura.beeldbelapp",
+            "store_country": "nl",
+            "store_lang": "nl",
+            "latest_crawled_version": "4.28.0",
+            "latest_crawl": 1603525064
+        },
+        {
+            "id": "pt.min_saude.spms.mysns",
+            "store_country": "pt",
+            "store_lang": "pt",
+            "latest_crawled_version": "1.5.0",
+            "latest_crawl": 1603527539
+        },
+        {
+            "id": "ru.altarix.mos.pgu",
+            "store_country": "ru",
+            "store_lang": "ru",
+            "latest_crawled_version": "3.11.2.2",
+            "latest_crawl": 1603013225
+        },
+        {
+            "id": "ru.mos.app",
+            "store_country": "ru",
+            "store_lang": "ru",
+            "latest_crawled_version": "1.7",
+            "latest_crawl": 1603526513
+        },
+        {
+            "id": "ru.mos.socmon",
+            "store_country": "ru",
+            "store_lang": "ru",
+            "latest_crawled_version": "1.8",
+            "latest_crawl": 1603526525
+        },
+        {
+            "id": "ru.mos.polls",
+            "store_country": "ru",
+            "store_lang": "ru",
+            "latest_crawled_version": "2.22.1",
+            "latest_crawl": 1603526543
+        },
+        {
+            "id": "appinventor.ai_david_taylor.Coronavirus_help2020",
+            "store_country": "uk",
+            "store_lang": "en",
+            "latest_crawled_version": "1.1",
+            "latest_crawl": 1603525406
+        },
+        {
+            "id": "net.hscni.covid19ni",
+            "store_country": "uk",
+            "store_lang": "en",
+            "latest_crawled_version": "2.0",
+            "latest_crawl": 1603525407
+        },
+        {
+            "id": "uk.nhs.covid19.production",
+            "store_country": "uk",
+            "store_lang": "en",
+            "latest_crawled_version": "3.7.2 (85)",
+            "latest_crawl": 1603525424
+        },
+        {
+            "id": "com.proudcrowd.care",
+            "store_country": "us",
+            "store_lang": "en",
+            "latest_crawled_version": "3.1",
+            "latest_crawl": 1603525087
+        },
+        {
+            "id": "gov.fema.mobile.android",
+            "store_country": "us",
+            "store_lang": "en",
+            "latest_crawled_version": "2.11.1",
+            "latest_crawl": 1603525092
+        },
+        {
+            "id": "gov.cdc.general",
+            "store_country": "us",
+            "store_lang": "en",
+            "latest_crawled_version": "3.1.1",
+            "latest_crawl": 1603525096
+        },
+        {
+            "id": "com.ri.crushcovid",
+            "store_country": "us",
+            "store_lang": "us",
+            "latest_crawled_version": "2.2",
+            "latest_crawl": 1603525106
+        },
+        {
+            "id": "gov.azdhs.covidwatch.android",
+            "store_country": "us",
+            "store_lang": "us",
+            "latest_crawled_version": "1.0.30",
+            "latest_crawl": 1603525107
+        },
+        {
+            "id": "gov.vdh.exposurenotification",
+            "store_country": "us",
+            "store_lang": "us",
+            "latest_crawled_version": "1.0",
+            "latest_crawl": 1603525108
+        },
+        {
+            "id": "gov.nv.dhhs.en",
+            "store_country": "us",
+            "store_lang": "us",
+            "latest_crawled_version": "1.2.11",
+            "latest_crawl": 1603525114
+        },
+        {
+            "id": "gov.de.covidtracker",
+            "store_country": "us",
+            "store_lang": "us",
+            "latest_crawled_version": "1.0.1",
+            "latest_crawl": 1603525122
+        },
+        {
+            "id": "com.shield.CombatCovidMD",
+            "store_country": "us",
+            "store_lang": "us"
+        },
+        {
+            "id": "org.pathcheck.guam.bt",
+            "store_country": "us",
+            "store_lang": "us",
+            "latest_crawled_version": "1.0.5",
+            "latest_crawl": 1603525135
+        },
+        {
+            "id": "com.shield.CombatCovidPBC",
+            "store_country": "us",
+            "store_lang": "us",
+            "latest_crawled_version": "1.0.5",
+            "latest_crawl": 1603525144
+        },
+        {
+            "id": "com.proudcrowd.exposure",
+            "store_country": "us",
+            "store_lang": "us",
+            "latest_crawled_version": "1.1",
+            "latest_crawl": 1603525151
+        },
+        {
+            "id": "gov.michigan.MiCovidExposure",
+            "store_country": "us",
+            "store_lang": "us",
+            "latest_crawled_version": "1.0",
+            "latest_crawl": 1603525153
+        },
+        {
+            "id": "de.xikolo.openwho",
+            "store_country": "au",
+            "store_lang": "en",
+            "latest_crawled_version": "3.6",
+            "latest_crawl": 1603526997
+        },
+        {
+            "id": "org.who.infoapp",
+            "store_country": "uk",
+            "store_lang": "en",
+            "latest_crawled_version": "3.1",
+            "latest_crawl": 1603525403
+        }
+    ]
+}
