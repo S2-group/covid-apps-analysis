@@ -76,7 +76,7 @@ def fill_overview(app, metadata, template, report_folder):
     return fill_placeholders(placeholders, template)
 
 # Given the portion of json file produced by Androwarm, it extracts a more structured and mapped data structure with placeholders 
-def get_sdk_info(aw, sdk_info):
+def get_sdk_info(aw):
     
     result = {
         'target_sdk': None,
@@ -102,17 +102,11 @@ def get_sdk_info(aw, sdk_info):
         min_sdk = int(min_sdk[0])
     if not max_sdk is None:
         max_sdk = int(max_sdk[0])
-
-    # Iterate over all codenames and when they match we produce the filled string to be put in the report
-    for e in sdk_info['codenames']:
-        if e['api_level'] == target_sdk:
-            result['target_sdk'] = e['codename'] + ', version ' + e['version'] + ' (API level ' + str(e['api_level']) + ')'
-        if e['api_level'] == effective_sdk:
-            result['effective_sdk'] = e['codename'] + ', version ' + e['version'] + ' (API level ' + str(e['api_level']) + ')'
-        if e['api_level'] == min_sdk:
-            result['min_sdk'] = e['codename'] + ', version ' + e['version'] + ' (API level ' + str(e['api_level']) + ')'
-        if e['api_level'] == max_sdk:
-            result['max_sdk'] = e['codename'] + ', version ' + e['version'] + ' (API level ' + str(e['api_level']) + ')'
+    
+    result['target_sdk'] = target_sdk
+    result['effective_sdk'] = effective_sdk
+    result['min_sdk'] = min_sdk
+    result['max_sdk'] = max_sdk
 
     return result
 
@@ -120,15 +114,13 @@ def get_sdk_info(aw, sdk_info):
 # Fill the Android section of the report
 def get_android_sdk(app, androwarn):
 
-    sdk_info = json.load(open('static_resources/android_codenames.json', 'r'))
-
-    mapped_info = get_sdk_info(androwarn[3]['androidmanifest.xml'][1][1], sdk_info)
+    mapped_info = get_sdk_info(androwarn[3]['androidmanifest.xml'][1][1])
 
     data = {
-        'TARGET_SDK': mapped_info['target_sdk'],
-        'EFFECTIVE_SDK': mapped_info['effective_sdk'],
-        'MIN_SDK': mapped_info['min_sdk'],
-        'MAX_SDK': mapped_info['max_sdk']
+        'target_sdk': mapped_info['target_sdk'],
+        'effective_sdk': mapped_info['effective_sdk'],
+        'min_sdk': mapped_info['min_sdk'],
+        'max_sdk': mapped_info['max_sdk']
     }
 
     return data
@@ -153,6 +145,8 @@ def analyse_sdks(apps):
     for app in apps:
         print('Analyzing ' + app['id'])
         android_sdks = get_android_sdk(app, app['androwarn'])
+        print(app['id'])
+        print(app['is_covid'])
         print(android_sdks)
 
 # We run the full analysis on the apps
