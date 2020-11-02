@@ -148,11 +148,12 @@ def get_reviews(stars, amount, reviews):
     return result
 
 # Analyze the SDK levels defined in the Manifest of the app 
-def analyse_sdks(app, androwarn_data):
+def analyse_sdks(apps):
 
-    print('Analyzing ' + app['id'])
-    android_sdks = get_android_sdk(app, androwarn_data)
-    print(android_sdks)
+    for app in apps:
+        print('Analyzing ' + app['id'])
+        android_sdks = get_android_sdk(app, app['androwarn'])
+        print(android_sdks)
 
 # We run the full analysis on the apps
 def run_analysis(input_path):
@@ -177,7 +178,13 @@ def run_analysis(input_path):
     for app in apps:
         # We fetch all data from the json files
         metadata, reviews, servers, androguard, androwarn = load_data(app)
-        analyse_sdks(app, androwarn)
+        app['metadata'] = metadata
+        app['reviews'] = reviews
+        app['servers'] = servers
+        app['androguard'] = androguard
+        app['androwarn'] = androwarn
+    
+    analyse_sdks(apps)
 
 
 def main():
