@@ -513,13 +513,6 @@
             "latest_crawl": 1603526665
         },
         {
-            "id": "org.who.infoapp",
-            "store_country": "au",
-            "store_lang": "en",
-            "latest_crawled_version": "3.1",
-            "latest_crawl": 1603526735
-        },
-        {
             "id": "au.gov.health.covid19",
             "store_country": "au",
             "store_lang": "en",
@@ -532,13 +525,6 @@
             "store_lang": "en",
             "latest_crawled_version": "38",
             "latest_crawl": 1603526992
-        },
-        {
-            "id": "de.xikolo.openwho",
-            "store_country": "au",
-            "store_lang": "en",
-            "latest_crawled_version": "3.6",
-            "latest_crawl": 1603526997
         },
         {
             "id": "au.gov.act.health.checkin",
@@ -896,11 +882,6 @@
             "store_lang": "us",
             "latest_crawled_version": "1.0.1",
             "latest_crawl": 1603525122
-        },
-        {
-            "id": "com.shield.CombatCovidMD",
-            "store_country": "us",
-            "store_lang": "us"
         },
         {
             "id": "org.pathcheck.guam.bt",
