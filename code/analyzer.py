@@ -120,10 +120,17 @@ def analyse_sdks(apps):
         app['max_sdk'] = android_sdks['max_sdk']
 
     df = pd.DataFrame(apps) 
-    print(df.columns)
-    plot = sns.boxplot(data=df, x="is_covid", y="min_sdk")
-    fig = plot.get_figure()
-    fig.savefig(figures_path + 'test.pdf')
+
+    plot_min_sdk = sns.boxplot(data=df, x="is_covid", y="min_sdk")
+    fig = plot_min_sdk.get_figure()
+    fig.savefig(figures_path + 'min_sdk.pdf')
+
+    # We reset the just-created figure so to do not have the subsequent plots on top of the old one
+    plot_min_sdk.get_figure().clf()
+
+    plot_target_sdk = sns.boxplot(data=df, x="is_covid", y="target_sdk")
+    fig = plot_target_sdk.get_figure()
+    fig.savefig(figures_path + 'target_sdk.pdf')
 
 
 # We run the full analysis on the apps
