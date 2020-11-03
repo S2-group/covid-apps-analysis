@@ -5,6 +5,7 @@ import shutil
 import re
 import pandas as pd  
 import seaborn as sns
+import matplotlib.ticker as ticker
 import configuration as c
 
 figures_path = '../figures/'
@@ -121,14 +122,18 @@ def analyse_sdks(apps):
 
     df = pd.DataFrame(apps) 
 
-    plot_min_sdk = sns.boxplot(data=df, x="is_covid", y="min_sdk")
+    plot_min_sdk = sns.boxplot(data=df, x="is_covid", y="min_sdk", palette="Set3")
+    plot_min_sdk.yaxis.set_major_locator(ticker.MultipleLocator(1))
+    plot_min_sdk.set(ylim=(0, 30))
     fig = plot_min_sdk.get_figure()
     fig.savefig(figures_path + 'min_sdk.pdf')
 
     # We reset the just-created figure so to do not have the subsequent plots on top of the old one
     plot_min_sdk.get_figure().clf()
 
-    plot_target_sdk = sns.boxplot(data=df, x="is_covid", y="target_sdk")
+    plot_target_sdk = sns.boxplot(data=df, x="is_covid", y="target_sdk", palette="Set3")
+    plot_target_sdk.yaxis.set_major_locator(ticker.MultipleLocator(1))
+    plot_target_sdk.set(ylim=(0, 30))
     fig = plot_target_sdk.get_figure()
     fig.savefig(figures_path + 'target_sdk.pdf')
 
