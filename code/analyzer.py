@@ -3,7 +3,12 @@ from datetime import datetime
 import os
 import shutil
 import re
+import pandas as pd  
+import seaborn as sns
 import configuration as c
+
+figures_path = '../figures/'
+root_path = '../'
 
 # Loads all the json files one by one containing the data which will populate the report
 def load_data(app):
@@ -38,42 +43,6 @@ def load_data(app):
         androwarn = None
 
     return metadata, reviews, servers, androguard, androwarn
-
-# Fill the Overview section of the report
-def fill_overview(app, metadata, template, report_folder):
-    
-    icon_path = 'icon.png'
-    c.download(metadata['icon'], report_folder + icon_path)
-
-    screenshots = ''
-    for i, s in enumerate(metadata['screenshots'], start=1):
-        s_path = 'screenshot_' + str(i) + '.png'
-        screenshots = screenshots + ' | <img src="<<<REBASE_ME>>>' + s_path + '" alt="screenshot" width="300"/> '
-        if i % 3 == 0:
-            screenshots = screenshots + ' | \n'  
-        c.download(s, report_folder + s_path) 
-
-    placeholders = {
-        'ICON_PATH': '<<<REBASE_ME>>>' + icon_path,
-        'SEPARATOR': c.SEPARATOR,
-        'APP_TITLE': metadata['title'],
-        'APP_VERSION': app['latest_crawled_version'],
-        'APP_ID': app['id'],
-        'APP_SUMMARY': metadata['summaryHTML'],
-        'APP_PRIVACY_POLICY': metadata['privacyPolicy'],
-        'APP_UPDATED': datetime.fromtimestamp(metadata['updated']),
-        'APP_RECENT_CHANGES': metadata['recentChangesHTML'],
-        'APP_INSTALLS': metadata['installs'],
-        'APP_GENRE': metadata['genre'],
-        'APP_RELEASE': metadata['released'],
-        'APP_SIZE': metadata['size'],
-        'APP_ANDROID_VERSION': metadata['androidVersionText'],
-        'APP_DESCRIPTION': '> ' + re.sub('[\n|\r]+','\n<br>', metadata['description']),
-        'SCREENSHOTS': screenshots
-    }
-
-    placeholders = fill_voids(placeholders)
-    return fill_placeholders(placeholders, template)
 
 # Given the portion of json file produced by Androwarm, it extracts a more structured and mapped data structure with placeholders 
 def get_sdk_info(aw):
@@ -115,14 +84,15 @@ def get_sdk_info(aw):
 def get_android_sdk(app, androwarn):
 
     mapped_info = get_sdk_info(androwarn[3]['androidmanifest.xml'][1][1])
-
     data = {
         'target_sdk': mapped_info['target_sdk'],
-        'effective_sdk': mapped_info['effective_sdk'],
         'min_sdk': mapped_info['min_sdk'],
         'max_sdk': mapped_info['max_sdk']
     }
 
+    # In some cases the target_sdk is None, we will use the effective_sdk field in those cases
+    if(data['target_sdk'] is None):
+        data['target_sdk'] = mapped_info['effective_sdk']
     return data
 
 # Retrieves the latest "amount" reviews of "stars" stars from "reviews"
@@ -143,11 +113,18 @@ def get_reviews(stars, amount, reviews):
 def analyse_sdks(apps):
 
     for app in apps:
-        print('Analyzing ' + app['id'])
+        # print('Analyzing ' + app['id'])
         android_sdks = get_android_sdk(app, app['androwarn'])
-        print(app['id'])
-        print(app['is_covid'])
-        print(android_sdks)
+        app['target_sdk'] = android_sdks['target_sdk']
+        app['min_sdk'] = android_sdks['min_sdk']
+        app['max_sdk'] = android_sdks['max_sdk']
+
+    df = pd.DataFrame(apps) 
+    print(df.columns)
+    plot = sns.boxplot(data=df, x="is_covid", y="min_sdk")
+    fig = plot.get_figure()
+    fig.savefig(figures_path + 'test.pdf')
+
 
 # We run the full analysis on the apps
 def run_analysis(input_path):
@@ -165,6 +142,7 @@ def run_analysis(input_path):
 
     for app in covid_apps:
         app['is_covid'] = True
+        app['corresponding_covid_app_id'] = None
     for app in non_covid_apps:
         app['is_covid'] = False
     
@@ -182,7 +160,7 @@ def run_analysis(input_path):
 
 
 def main():
-    run_analysis("../")
+    run_analysis(root_path)
 
 if __name__ == "__main__":
     main()

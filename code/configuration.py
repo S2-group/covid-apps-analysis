@@ -20,9 +20,6 @@ def setPaths(path):
     GLOBAL_PATH = path
     APPS_PATH = path + 'apps.json'
     DATA_PATH = GLOBAL_PATH + 'data/'
-    APKS_PATH = GLOBAL_PATH + 'apks/'
-    REPORTS_PATH = GLOBAL_PATH + 'reports/'
-
 
 # Downloads a remote resource pointed by url into path
 def download(url, path):
