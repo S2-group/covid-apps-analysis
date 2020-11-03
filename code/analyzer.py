@@ -137,6 +137,8 @@ def analyse_sdks(apps):
     fig = plot_target_sdk.get_figure()
     fig.savefig(figures_path + 'target_sdk.pdf')
 
+def analyse_permissions(apps):
+    pass
 
 # We run the full analysis on the apps
 def run_analysis(input_path):
@@ -169,7 +171,7 @@ def run_analysis(input_path):
         app['androwarn'] = androwarn
     
     analyse_sdks(apps)
-
+    analyse_permissions(apps)
 
 def main():
     run_analysis(root_path)
