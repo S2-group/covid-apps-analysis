@@ -1,0 +1,46 @@
+Median # of permissions:
+app_type
+COVID        9
+Non-COVID    9
+Name: permission_count, dtype: int64
+-------------------------------------
+Permissions only in COVID:
+	RECEIVE_ADM_MESSAGE: 1
+	USE_FULL_SCREEN_INTENT: 4
+	DISABLE_KEYGUARD: 1
+	READ_PROFILE: 1
+	USE_COMPONENT: 2
+	ACCESS_NOTIFICATION_POLICY: 1
+	READ_SYNC_SETTINGS: 2
+	MANAGE_FINGERPRINT: 1
+	location: 2
+	DOWNLOAD_WITHOUT_NOTIFICATION: 1
+	OPPO_COMPONENT_SAFE: 2
+	USE_BIOMETRIC: 3
+	PermissionRequest: 1
+
+Permissions only in Non-COVID:
+	MAPS_RECEIVE: 1
+	MEDIA_CONTENT_CONTROL: 3
+	BODY_SENSORS: 2
+	BILLING: 4
+	ACCESS_ASSISTED_GPS: 1
+	autoFocus: 1
+	ACCESS_GPS: 1
+	permission_name: 1
+	ACCESS_DATA: 1
+	CHANGE_NETWORK_STATE: 1
+	RECORD_VIDEO: 1
+	REORDER_TASKS: 1
+	NFC: 2
+	MANAGE_ACCOUNTS: 1
+	CAMERA_ROLL: 1
+	CHECK_LICENSE: 3
+	WRITE_USER_DICTIONARY: 1
+	WRITE_CONTACTS: 1
+	UA_DATA: 1
+	ACCESS_MOCK_LOCATION: 2
+-------------------------------------
+Permission frequencies:
+wilcoxon signed-rank test p-value:0.316018063771
+-------------------------------------
