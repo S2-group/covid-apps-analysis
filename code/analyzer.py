@@ -7,11 +7,10 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.ticker as ticker
 import matplotlib.pyplot as plt
-import configuration as c
 from scipy.stats import wilcoxon
-
-figures_path = '../figures/'
-root_path = '../'
+import configuration as c
+import permission_analysis
+import sdk_analysis
 
 # Loads all the json files one by one containing the data which will populate the report
 def load_data(app):
@@ -47,218 +46,6 @@ def load_data(app):
 
     return metadata, reviews, servers, androguard, androwarn
 
-# Given the portion of json file produced by Androwarm, it extracts a more structured and mapped data structure with placeholders 
-def get_sdk_info(aw):
-    
-    result = {
-        'target_sdk': None,
-        'effective_sdk': None,
-        'min_sdk': None,
-        'max_sdk': None,
-    }
-
-    # We flatten the list into a string so to ease the application of the regexes below
-    contents = '\n'.join(aw)
-
-    target_sdk = re.findall(r'Declared target SDK:\s*(\d+)', contents) or None
-    effective_sdk = re.findall(r'Effective target SDK:\s*(\d+)', contents) or None
-    min_sdk = re.findall(r'Min SDK:\s*(\d+)', contents) or None
-    max_sdk = re.findall(r'Max SDK:\s*(\d+)', contents) or None
-
-    # Transform API levels into integers (when possible) so to ease the comparison in the subsequent for iteration 
-    if not target_sdk is None:
-        target_sdk = int(target_sdk[0])
-    if not effective_sdk is None:
-        effective_sdk = int(effective_sdk[0])
-    if not min_sdk is None:
-        min_sdk = int(min_sdk[0])
-    if not max_sdk is None:
-        max_sdk = int(max_sdk[0])
-    
-    result['target_sdk'] = target_sdk
-    result['effective_sdk'] = effective_sdk
-    result['min_sdk'] = min_sdk
-    result['max_sdk'] = max_sdk
-
-    return result
-
-
-# Fill the Android section of the report
-def get_android_sdk(app, androwarn):
-
-    mapped_info = get_sdk_info(androwarn[3]['androidmanifest.xml'][1][1])
-    data = {
-        'target_sdk': mapped_info['target_sdk'],
-        'min_sdk': mapped_info['min_sdk'],
-        'max_sdk': mapped_info['max_sdk']
-    }
-
-    # In some cases the target_sdk is None, we will use the effective_sdk field in those cases
-    if(data['target_sdk'] is None):
-        data['target_sdk'] = mapped_info['effective_sdk']
-    return data
-
-# Retrieves the latest "amount" reviews of "stars" stars from "reviews"
-def get_reviews(stars, amount, reviews):
-    result = ''
-    count = 0
-    i = 0
-    while count != amount and i < len(reviews):
-        if reviews[i]['score'] == stars:
-            count = count + 1
-            result = result + '> ' + reviews[i]['content'].replace('**', '\*\*') + '<br> :date: __' + reviews[i]['at'] + '__\n\n'
-        i = i + 1
-    if count == 0:
-        result = 'No recent reviews available with ' + str(stars) + ' stars.'
-    return result
-
-# Analyze the SDK levels defined in the Manifest of the app 
-def analyse_sdks(apps):
-
-    for app in apps:
-        # print('Analyzing ' + app['id'])
-        android_sdks = get_android_sdk(app, app['androwarn'])
-        app['target_sdk'] = android_sdks['target_sdk']
-        app['min_sdk'] = android_sdks['min_sdk']
-        app['max_sdk'] = android_sdks['max_sdk']
-
-    df = pd.DataFrame(apps) 
-
-    plot_min_sdk = sns.boxplot(data=df, x="is_covid", y="min_sdk", palette="Set3")
-    plot_min_sdk.yaxis.set_major_locator(ticker.MultipleLocator(1))
-    plot_min_sdk.set(ylim=(0, 30))
-    fig = plot_min_sdk.get_figure()
-    fig.savefig(figures_path + 'min_sdk.pdf')
-
-    # We reset the just-created figure so to do not have the subsequent plots on top of the old one
-    plot_min_sdk.get_figure().clf()
-
-    plot_target_sdk = sns.boxplot(data=df, x="is_covid", y="target_sdk", palette="Set3")
-    plot_target_sdk.yaxis.set_major_locator(ticker.MultipleLocator(1))
-    plot_target_sdk.set(ylim=(0, 30))
-    fig = plot_target_sdk.get_figure()
-    fig.savefig(figures_path + 'target_sdk.pdf')
-
-    # We reset the figure again
-    plot_target_sdk.get_figure().clf()
-
-# Analyze the permissions required by the app 
-def analyse_permissions(apps):
-    permissions_stats_file = open(figures_path + "permissions_stats.txt", "w")
-    all_apps_permissions_counts = []
-    permissions_counts_covid_apps = []
-    permissions_counts_non_covid_apps = []
-    permissions_frequencies_covid = dict()
-    permissions_frequencies_non_covid = dict()
-
-    ############ Pre-processing ############
-    for app in apps:
-        app['app_type'] = 'COVID' if app['is_covid'] else 'Non-COVID'
-        app['permissions'] = app['androguard']['permissions']
-        app['permission_count'] = len(app['permissions'])
-
-        #### Count the number of permissions of each app ####
-        all_apps_permissions_counts.append(app['permission_count'])
-        if app['is_covid']:
-            permissions_counts_covid_apps.append(app['permission_count'])
-        else:
-            permissions_counts_non_covid_apps.append(app['permission_count'])
-        
-        #### Count the number of apps that require each permission ####
-        for permission in app['permissions']:
-            permission_name = permission[permission.rindex('.')+1:]
-
-            if app['is_covid']:
-                if permission_name in permissions_frequencies_covid.keys():
-                    permissions_frequencies_covid[permission_name] += 1
-                else:
-                    permissions_frequencies_covid[permission_name] = 1
-            else:
-                if permission_name in permissions_frequencies_non_covid.keys():
-                    permissions_frequencies_non_covid[permission_name] += 1
-                else:
-                    permissions_frequencies_non_covid[permission_name] = 1
-
-    df = pd.DataFrame(apps) 
-
-    ############ Stats and Plots ############
-    # Get the median number of permissions of COVID and Non-COVID apps
-    permissions_stats_file.write("Median # of permissions:\n" + str(df.groupby(['app_type'])['permission_count'].median()))
-    permissions_stats_file.write("\n-------------------------------------\n")
-
-    #### Boxplot of the number of permissions of COVID and Non-COVID apps ####
-    plot_num_permissions = sns.boxplot(data=df, x="app_type", y="permission_count", palette="Set3")
-    plot_num_permissions.yaxis.set_major_locator(ticker.MultipleLocator(1))
-    plot_num_permissions.set(ylim=(0, max(all_apps_permissions_counts)), xlabel='Apps', ylabel='# of permissions')
-    fig = plot_num_permissions.get_figure()
-    fig.set_size_inches(6, 8)
-    fig.savefig(figures_path + 'num_permissions.pdf')
-
-
-    #### Clear figure ####
-    plot_num_permissions.get_figure().clf()
-
-
-    ##### Bar plot of permission frequencies of COVID and Non-COVID apps ####
-    # Sort permissions based on frequency
-    permissions_frequencies_covid = {k: v for k, v in sorted(permissions_frequencies_covid.items(), key=lambda item: item[1])}
-    permissions_frequencies_non_covid = {k: v for k, v in sorted(permissions_frequencies_non_covid.items(), key=lambda item: item[1])}
-
-    # COVID permissions
-    top = 10 # Top 10 permissions --> to plot all permissions, we use: top = len(permissions_frequencies_covid)
-    plt.barh(range(top), list(permissions_frequencies_covid.values())[-top:])
-    plt.yticks(range(top), list(permissions_frequencies_covid.keys())[-top:])
-    plt.xlabel('Frequency')
-    plt.ylabel('Permission')
-    fig.set_size_inches(8, 5)
-    fig.savefig(figures_path + 'permissions_frequencies_covid.pdf', bbox_inches='tight')
-
-    # Clear figure
-    plot_num_permissions.get_figure().clf()
-
-    # Non-COVID permissions
-    top = 10
-    plt.barh(range(top), list(permissions_frequencies_non_covid.values())[-top:])
-    plt.yticks(range(top), list(permissions_frequencies_non_covid.keys())[-top:])
-    plt.xlabel('Frequency')
-    plt.ylabel('Permission')
-    fig.set_size_inches(8, 5)
-    fig.savefig(figures_path + 'permissions_frequencies_non_covid.pdf', bbox_inches='tight')
-
-
-    #### Difference in permissions between COVID and Non-COVID ####
-    permissions_only_in_covid = permissions_frequencies_covid.keys() - permissions_frequencies_non_covid.keys()
-    permissions_only_in_non_ovid = permissions_frequencies_non_covid.keys() - permissions_frequencies_covid.keys()
-    
-    permissions_stats_file.write("Permissions only in COVID:\n")
-    for permission in permissions_only_in_covid:
-        permissions_stats_file.write("\t" + permission + ": " + str(permissions_frequencies_covid[permission]) + "\n")
-
-    permissions_stats_file.write("\nPermissions only in Non-COVID:\n")
-    for permission in permissions_only_in_non_ovid:
-        permissions_stats_file.write("\t" + permission + ": " + str(permissions_frequencies_non_covid[permission]) + "\n")
-    
-    permissions_stats_file.write("-------------------------------------\n")
-
-
-    #### Compute Wilcoxon signed-sum test to measure the difference in frequencies of permission in COVID and Non-COVID ####
-    # Add permissions that do not exist in the other category of apps with zero frequency
-    for permission in permissions_only_in_covid:
-        permissions_frequencies_non_covid[permission] = 0
-    for permission in permissions_only_in_non_ovid:
-        permissions_frequencies_covid[permission] = 0
-    
-    # Sort permissions based name
-    permissions_frequencies_covid = {k: v for k, v in sorted(permissions_frequencies_covid.items(), key=lambda item: item[0])}
-    permissions_frequencies_non_covid = {k: v for k, v in sorted(permissions_frequencies_non_covid.items(), key=lambda item: item[0])}
-    
-    # Run Wilcoxon signed-sum test
-    wilcox = wilcoxon(list(permissions_frequencies_covid.values()), list(permissions_frequencies_non_covid.values()), correction=True)
-    permissions_stats_file.write("Permission frequencies:\nwilcoxon signed-rank test p-value:" + str(wilcox.pvalue))
-    permissions_stats_file.write("\n-------------------------------------\n")
-
-    permissions_stats_file.close()
-
 # We run the full analysis on the apps
 def run_analysis(input_path):
     
@@ -289,11 +76,11 @@ def run_analysis(input_path):
         app['androguard'] = androguard
         app['androwarn'] = androwarn
     
-    analyse_sdks(apps)
-    analyse_permissions(apps)
+    sdk_analysis.analyse_sdks(apps)
+    permission_analysis.analyse_permissions(apps)
 
 def main():
-    run_analysis(root_path)
+    run_analysis(c.root_path)
 
 if __name__ == "__main__":
     main()

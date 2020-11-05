@@ -6,6 +6,8 @@ SEPARATOR = '___'
 
 NUM_REVIEWS = 1000
 
+figures_path = '../figures/'
+root_path = '../'
 
 def setPaths(path):
 
