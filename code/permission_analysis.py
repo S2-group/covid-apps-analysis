@@ -85,6 +85,29 @@ def generate_separate_bar_charts_of_permission_fequencies(permission_frequencies
 
     plt.clf()
 
+def generate_combined_bar_chart_of_permission_fequencies(permission_frequencies_covid, permission_frequencies_non_covid, top='all'):
+    permission_frequencies_df = pd.DataFrame({'covid':pd.Series(permission_frequencies_covid),'non_covid':pd.Series(permission_frequencies_non_covid)}).fillna(0)
+    permission_frequencies_df = permission_frequencies_df.sort_values('covid', ascending=True)
+
+    displayed_permissions = permission_frequencies_df if top=='all' else permission_frequencies_df.tail(top)
+
+    positions = list(range(len(displayed_permissions.index)))
+    width = 0.35
+
+    fig, ax = plt.subplots(figsize=(8, 5 + len(displayed_permissions.index)/6))
+    ax.barh([pos + width/2 for pos in positions], displayed_permissions['covid'], width, label='COVID', color=['#95cbc1'])
+    ax.barh([pos - width/2 for pos in positions], displayed_permissions['non_covid'], width, label='Non-COVID', color=['#f6f6bd'])
+
+    ax.set_xlabel('Frequency')
+    ax.set_ylabel('Permission')
+    ax.set_yticks(positions)
+    ax.set_yticklabels(list(displayed_permissions.index))
+    ax.legend()
+
+    fig.savefig(c.figures_path + str(top) + '_permission_frequencies_covid_and_non_covid.pdf', bbox_inches='tight')
+
+    fig.clf()
+
 def identify_permissions_only_in_covid_or_non_covid(permission_frequencies_covid, permission_frequencies_non_covid, permissions_stats_file):
     permissions_only_in_covid = permission_frequencies_covid.keys() - permission_frequencies_non_covid.keys()
     permissions_only_in_non_ovid = permission_frequencies_non_covid.keys() - permission_frequencies_covid.keys()
@@ -138,6 +161,9 @@ def analyse_permissions(apps):
     generate_boxplots_of_permission_counts_per_app(df)
     
     generate_separate_bar_charts_of_permission_fequencies(permission_frequencies_covid, permission_frequencies_non_covid, top = 10) # For all permossions, use: top = len(permission_frequencies_covid)
+
+    generate_combined_bar_chart_of_permission_fequencies(permission_frequencies_covid, permission_frequencies_non_covid, top = 10)
+    generate_combined_bar_chart_of_permission_fequencies(permission_frequencies_covid, permission_frequencies_non_covid) # all permissions
 
     identify_permissions_only_in_covid_or_non_covid(permission_frequencies_covid, permission_frequencies_non_covid, permissions_stats_file)
 
