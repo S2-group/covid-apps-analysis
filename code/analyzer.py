@@ -137,6 +137,9 @@ def analyse_sdks(apps):
     fig = plot_target_sdk.get_figure()
     fig.savefig(figures_path + 'target_sdk.pdf')
 
+    # We reset the figure again
+    plot_target_sdk.get_figure().clf()
+
 def analyse_permissions(apps):
     pass
 
