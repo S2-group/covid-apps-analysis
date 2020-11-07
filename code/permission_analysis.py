@@ -15,6 +15,7 @@ permission_counts_covid_apps = []
 permission_counts_non_covid_apps = []
 permission_frequencies_covid = dict()
 permission_frequencies_non_covid = dict()
+permissions_stats_file = open(c.figures_path + "permissions_stats.txt", "w")
 
 def sort_dictionary(dictionary, key_or_value):
     return {k: v for k, v in sorted(dictionary.items(), key=lambda item: item[key_or_value])}
@@ -61,13 +62,13 @@ def generate_boxplots_of_permission_counts_per_app(df):
     
     fig.clf()
 
-def generate_separate_bar_charts_of_permission_fequencies(permission_frequencies_covid, permission_frequencies_non_covid, top):
-    permission_frequencies_covid = sort_dictionary(permission_frequencies_covid, 1) 
-    permission_frequencies_non_covid = sort_dictionary(permission_frequencies_non_covid, 1) 
+def generate_separate_bar_charts_of_permission_fequencies(top):
+    sorted_permission_frequencies_covid = sort_dictionary(permission_frequencies_covid, 1) 
+    sorted_permission_frequencies_non_covid = sort_dictionary(permission_frequencies_non_covid, 1) 
 
     # COVID permissions
-    plt.barh(range(top), list(permission_frequencies_covid.values())[-top:])
-    plt.yticks(range(top), list(permission_frequencies_covid.keys())[-top:])
+    plt.barh(range(top), list(sorted_permission_frequencies_covid.values())[-top:])
+    plt.yticks(range(top), list(sorted_permission_frequencies_covid.keys())[-top:])
     plt.xlabel('Frequency')
     plt.ylabel('Permission')
     plt.gcf().set_size_inches(8, 5)
@@ -76,8 +77,8 @@ def generate_separate_bar_charts_of_permission_fequencies(permission_frequencies
     plt.clf()
 
     # Non-COVID permissions
-    plt.barh(range(top), list(permission_frequencies_non_covid.values())[-top:])
-    plt.yticks(range(top), list(permission_frequencies_non_covid.keys())[-top:])
+    plt.barh(range(top), list(sorted_permission_frequencies_non_covid.values())[-top:])
+    plt.yticks(range(top), list(sorted_permission_frequencies_non_covid.keys())[-top:])
     plt.xlabel('Frequency')
     plt.ylabel('Permission')
     plt.gcf().set_size_inches(8, 5)
@@ -85,10 +86,9 @@ def generate_separate_bar_charts_of_permission_fequencies(permission_frequencies
 
     plt.clf()
 
-def generate_combined_bar_chart_of_permission_fequencies(permission_frequencies_covid, permission_frequencies_non_covid, top='all'):
+def generate_combined_bar_chart_of_permission_fequencies(top='all'):
     permission_frequencies_df = pd.DataFrame({'covid':pd.Series(permission_frequencies_covid),'non_covid':pd.Series(permission_frequencies_non_covid)}).fillna(0)
     permission_frequencies_df = permission_frequencies_df.sort_values('covid', ascending=True)
-
     displayed_permissions = permission_frequencies_df if top=='all' else permission_frequencies_df.tail(top)
 
     positions = list(range(len(displayed_permissions.index)))
@@ -108,7 +108,7 @@ def generate_combined_bar_chart_of_permission_fequencies(permission_frequencies_
 
     fig.clf()
 
-def identify_permissions_only_in_covid_or_non_covid(permission_frequencies_covid, permission_frequencies_non_covid, permissions_stats_file):
+def identify_permissions_only_in_covid_or_non_covid():
     permissions_only_in_covid = permission_frequencies_covid.keys() - permission_frequencies_non_covid.keys()
     permissions_only_in_non_ovid = permission_frequencies_non_covid.keys() - permission_frequencies_covid.keys()
     
@@ -122,29 +122,29 @@ def identify_permissions_only_in_covid_or_non_covid(permission_frequencies_covid
     
     permissions_stats_file.write("-------------------------------------\n")
 
-def measure_difference_in_permission_frequencies(permission_frequencies_covid, permission_frequencies_non_covid, permissions_stats_file):
+def measure_difference_in_permission_frequencies():
     permissions_only_in_covid = permission_frequencies_covid.keys() - permission_frequencies_non_covid.keys()
     permissions_only_in_non_ovid = permission_frequencies_non_covid.keys() - permission_frequencies_covid.keys()
 
     # Add permissions that do not exist in the other category of apps with zero frequency
+    all_permissions_covid = permission_frequencies_covid
+    all_permissions_non_covid = permission_frequencies_non_covid
     for permission in permissions_only_in_covid:
-        permission_frequencies_non_covid[permission] = 0
+        all_permissions_non_covid[permission] = 0
     for permission in permissions_only_in_non_ovid:
-        permission_frequencies_covid[permission] = 0
+        all_permissions_covid[permission] = 0
     
     # Sort permissions based name
-    permission_frequencies_covid = sort_dictionary(permission_frequencies_covid, 0)
-    permission_frequencies_non_covid = sort_dictionary(permission_frequencies_non_covid, 0)
+    all_permissions_covid = sort_dictionary(all_permissions_covid, 0)
+    all_permissions_non_covid = sort_dictionary(all_permissions_non_covid, 0)
     
     # Run Wilcoxon signed-sum test
-    wilcox = wilcoxon(list(permission_frequencies_covid.values()), list(permission_frequencies_non_covid.values()), correction=True)
+    wilcox = wilcoxon(list(all_permissions_covid.values()), list(all_permissions_non_covid.values()), correction=True)
     permissions_stats_file.write("Permission frequencies:\nwilcoxon signed-rank test p-value:" + str(wilcox.pvalue))
     permissions_stats_file.write("\n-------------------------------------\n")
 
 # Analyze app permissions
 def analyse_permissions(apps):
-    permissions_stats_file = open(c.figures_path + "permissions_stats.txt", "w")
-
     for app in apps:
         app['app_type'] = 'COVID' if app['is_covid'] else 'Non-COVID'
         app['permissions'] = app['androguard']['permissions']
@@ -160,13 +160,13 @@ def analyse_permissions(apps):
 
     generate_boxplots_of_permission_counts_per_app(df)
     
-    generate_separate_bar_charts_of_permission_fequencies(permission_frequencies_covid, permission_frequencies_non_covid, top = 10) # For all permossions, use: top = len(permission_frequencies_covid)
+    generate_separate_bar_charts_of_permission_fequencies(top = 10) 
 
-    generate_combined_bar_chart_of_permission_fequencies(permission_frequencies_covid, permission_frequencies_non_covid, top = 10)
-    generate_combined_bar_chart_of_permission_fequencies(permission_frequencies_covid, permission_frequencies_non_covid) # all permissions
+    generate_combined_bar_chart_of_permission_fequencies(top = 10)
+    generate_combined_bar_chart_of_permission_fequencies() # all permissions
 
-    identify_permissions_only_in_covid_or_non_covid(permission_frequencies_covid, permission_frequencies_non_covid, permissions_stats_file)
+    identify_permissions_only_in_covid_or_non_covid()
 
-    measure_difference_in_permission_frequencies(permission_frequencies_covid, permission_frequencies_non_covid, permissions_stats_file)
+    measure_difference_in_permission_frequencies()
 
     permissions_stats_file.close()
