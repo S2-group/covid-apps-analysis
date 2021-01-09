@@ -11,6 +11,7 @@ from scipy.stats import wilcoxon
 import configuration as c
 import permission_analysis
 import sdk_analysis
+import components_analysis
 
 # Loads all the json files one by one containing the data which will populate the report
 def load_data(app):
@@ -78,6 +79,7 @@ def run_analysis(input_path):
     
     sdk_analysis.analyse_sdks(apps)
     permission_analysis.analyse_permissions(apps)
+    components_analysis.analyse_components(apps)
 
 def main():
     run_analysis(c.root_path)
