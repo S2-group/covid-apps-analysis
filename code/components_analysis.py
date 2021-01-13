@@ -14,12 +14,12 @@ import numpy as np
 
 def analyse_components(apps):
     #Set range of interest
-    #activities: 2, servies: 3, receivers: 4, providers: 5
+    #activities: 2, services: 3, receivers: 4, providers: 5
     allComponents = slice(2,6)
-    activities = range(2,3)
-    services = range(3,4)
-    receivers = range(4,5)
-    providers = range(5,6)
+    activities = slice(2,3)
+    services = slice(3,4)
+    receivers = slice(4,5)
+    providers = slice(5,6)
 
     analyse_components_in_range(apps, allComponents)
 
