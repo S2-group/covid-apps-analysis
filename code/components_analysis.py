@@ -52,7 +52,8 @@ def executeTTest(apps, components):
     print("Mean: {}.".format(np.mean(componentsNC)))
     print("Var: {}.".format(np.var(componentsNC)))
     
-    print(stats.ttest_ind(componentsC,componentsNC, equal_var = False))
+    stat, p = stats.mannwhitneyu(componentsC,componentsNC)
+    print("Mann-Whitney: U={}, n(c)={}, n(nc)={}, p-value={}.".format(stat, len(componentsC), len(componentsNC), p))
     
 def generateChart(apps, components):
     df = pd.DataFrame(apps)
@@ -63,4 +64,4 @@ def generateChart(apps, components):
     plot.set_xticklabels(['non-COVID', 'COVID'])
     plot.set(xlabel='', ylabel='Number of components')
     fig = plot.get_figure()
-    fig.savefig(c.figures_path + 'componentNumber.pdf')
+    fig.savefig(c.figures_path + 'componentNumber-receivers.pdf')
