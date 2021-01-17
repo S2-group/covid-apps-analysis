@@ -77,8 +77,8 @@ def run_analysis(input_path):
         app['androguard'] = androguard
         app['androwarn'] = androwarn
     
-    sdk_analysis.analyse_sdks(apps)
     permission_analysis.analyse_permissions(apps)
+    sdk_analysis.analyse_sdks(apps)
     components_analysis.analyse_components(apps)
 
 def main():

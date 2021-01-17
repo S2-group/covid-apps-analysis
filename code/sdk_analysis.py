@@ -7,6 +7,8 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.ticker as ticker
 import matplotlib.pyplot as plt
+import matplotlib.cm as cm
+import matplotlib.colors as colors
 import configuration as c
 from scipy.stats import wilcoxon
 
@@ -87,30 +89,36 @@ def analyse_sdks(apps):
 
     df = pd.DataFrame(apps) 
 
-    plot_min_sdk = sns.boxplot(data=df, x="is_covid", y="min_sdk", palette="Set3")
+    # Align the colors to the other analyses
+    color_1 = '#FFFFB3'
+    color_2 = '#8DD2C7'
+    colors_list = [color_1, color_2]
+    sns.set_palette(sns.color_palette(colors_list))
+
+    plot_min_sdk = sns.boxplot(data=df, x="is_covid", y="min_sdk")
     plot_min_sdk.yaxis.set_major_locator(ticker.MultipleLocator(1))
     plot_min_sdk.set(ylim=(0, 30))
     plot_min_sdk.set_xticklabels(['non-COVID', 'COVID'])
     plot_min_sdk.set(xlabel='', ylabel='Minimum Android SDK version')
-    plot_min_sdk.axhline(1, ls='--', linewidth=1)
+    plot_min_sdk.axhline(1, ls='--', linewidth=1, color='grey')
     plot_min_sdk.text(0.5,1-0.5, "1", fontsize=8, backgroundcolor='white', horizontalalignment='center', verticalalignment='bottom')
-    plot_min_sdk.axhline(5, ls='--', linewidth=1)
+    plot_min_sdk.axhline(5, ls='--', linewidth=1, color='grey')
     plot_min_sdk.text(0.5,5-0.5, "2", fontsize=8, backgroundcolor='white', horizontalalignment='center', verticalalignment='bottom')
-    plot_min_sdk.axhline(11, ls='--', linewidth=1)
+    plot_min_sdk.axhline(11, ls='--', linewidth=1, color='grey')
     plot_min_sdk.text(0.5,11-0.5, "3", fontsize=8, backgroundcolor='white', horizontalalignment='center', verticalalignment='bottom')
-    plot_min_sdk.axhline(14, ls='--', linewidth=1)
+    plot_min_sdk.axhline(14, ls='--', linewidth=1, color='grey')
     plot_min_sdk.text(0.5,14-0.5, "4", fontsize=8, backgroundcolor='white', horizontalalignment='center', verticalalignment='bottom')
-    plot_min_sdk.axhline(21, ls='--', linewidth=1)
+    plot_min_sdk.axhline(21, ls='--', linewidth=1, color='grey')
     plot_min_sdk.text(0.5,21-0.5, "5", fontsize=8, backgroundcolor='white', horizontalalignment='center', verticalalignment='bottom')
-    plot_min_sdk.axhline(23, ls='--', linewidth=1)
+    plot_min_sdk.axhline(23, ls='--', linewidth=1, color='grey')
     plot_min_sdk.text(0.5,23-0.5, "6", fontsize=8, backgroundcolor='white', horizontalalignment='center', verticalalignment='bottom')
-    plot_min_sdk.axhline(25, ls='--', linewidth=1)
+    plot_min_sdk.axhline(25, ls='--', linewidth=1, color='grey')
     plot_min_sdk.text(0.5,25-0.5, "7", fontsize=8, backgroundcolor='white', horizontalalignment='center', verticalalignment='bottom')
-    plot_min_sdk.axhline(27, ls='--', linewidth=1)
+    plot_min_sdk.axhline(27, ls='--', linewidth=1, color='grey')
     plot_min_sdk.text(0.5,27-0.5, "8", backgroundcolor='white', fontsize=8, horizontalalignment='center', verticalalignment='bottom')
-    plot_min_sdk.axhline(28, ls='--', linewidth=1, zorder=100)
+    plot_min_sdk.axhline(28, ls='--', linewidth=1, zorder=100, color='grey')
     # plot_min_sdk.text(0.5,28-0.5, "9", fontsize=8, horizontalalignment='center', verticalalignment='bottom')
-    plot_min_sdk.axhline(29, ls='--', linewidth=1)
+    plot_min_sdk.axhline(29, ls='--', linewidth=1, color='grey')
     plot_min_sdk.text(0.5,29-0.5, "10", fontsize=8, backgroundcolor='white', horizontalalignment='center', verticalalignment='bottom')
     # plot_min_sdk.axhline(30, ls='--', linewidth=1)
     # plot_min_sdk.text(0.5,30-0.5, "11", fontsize=8, horizontalalignment='center', verticalalignment='bottom')
@@ -121,30 +129,30 @@ def analyse_sdks(apps):
     # We reset the just-created figure so to do not have the subsequent plots on top of the old one
     plot_min_sdk.get_figure().clf()
 
-    plot_target_sdk = sns.boxplot(data=df, x="is_covid", y="target_sdk", palette="Set3")
+    plot_target_sdk = sns.boxplot(data=df, x="is_covid", y="target_sdk")
     plot_target_sdk.yaxis.set_major_locator(ticker.MultipleLocator(1))
     plot_target_sdk.set(ylim=(0, 30))
     plot_target_sdk.set_xticklabels(['non-COVID', 'COVID'])
     plot_target_sdk.set(xlabel='', ylabel='Target Android SDK version')
-    plot_target_sdk.axhline(1, ls='--', linewidth=1)
+    plot_target_sdk.axhline(1, ls='--', linewidth=1, color='grey')
     plot_target_sdk.text(0.5,1-0.5, "1", fontsize=8, backgroundcolor='white', horizontalalignment='center', verticalalignment='bottom')
-    plot_target_sdk.axhline(5, ls='--', linewidth=1)
+    plot_target_sdk.axhline(5, ls='--', linewidth=1, color='grey')
     plot_target_sdk.text(0.5,5-0.5, "2", fontsize=8, backgroundcolor='white', horizontalalignment='center', verticalalignment='bottom')
-    plot_target_sdk.axhline(11, ls='--', linewidth=1)
+    plot_target_sdk.axhline(11, ls='--', linewidth=1, color='grey')
     plot_target_sdk.text(0.5,11-0.5, "3", fontsize=8, backgroundcolor='white', horizontalalignment='center', verticalalignment='bottom')
-    plot_target_sdk.axhline(14, ls='--', linewidth=1)
+    plot_target_sdk.axhline(14, ls='--', linewidth=1, color='grey')
     plot_target_sdk.text(0.5,14-0.5, "4", fontsize=8, backgroundcolor='white', horizontalalignment='center', verticalalignment='bottom')
-    plot_target_sdk.axhline(21, ls='--', linewidth=1)
+    plot_target_sdk.axhline(21, ls='--', linewidth=1, color='grey')
     plot_target_sdk.text(0.5,21-0.5, "5", fontsize=8, backgroundcolor='white', horizontalalignment='center', verticalalignment='bottom')
-    plot_target_sdk.axhline(23, ls='--', linewidth=1)
+    plot_target_sdk.axhline(23, ls='--', linewidth=1, color='grey')
     plot_target_sdk.text(0.5,23-0.5, "6", fontsize=8, backgroundcolor='white', horizontalalignment='center', verticalalignment='bottom')
-    plot_target_sdk.axhline(25, ls='--', linewidth=1)
+    plot_target_sdk.axhline(25, ls='--', linewidth=1, color='grey')
     plot_target_sdk.text(0.5,25-0.5, "7", fontsize=8, backgroundcolor='white', horizontalalignment='center', verticalalignment='bottom')
-    plot_target_sdk.axhline(27, ls='--', linewidth=1)
+    plot_target_sdk.axhline(27, ls='--', linewidth=1, color='grey')
     plot_target_sdk.text(0.5,27-0.5, "8", backgroundcolor='white', fontsize=8, horizontalalignment='center', verticalalignment='bottom')
-    plot_target_sdk.axhline(28, ls='--', linewidth=1, zorder=100)
+    plot_target_sdk.axhline(28, ls='--', linewidth=1, zorder=100, color='grey')
     # plot_target_sdk.text(0.5,28-0.5, "9", fontsize=8, horizontalalignment='center', verticalalignment='bottom')
-    plot_target_sdk.axhline(29, ls='--', linewidth=1)
+    plot_target_sdk.axhline(29, ls='--', linewidth=1, color='grey')
     plot_target_sdk.text(0.5,29-0.5, "10", fontsize=8, backgroundcolor='white', horizontalalignment='center', verticalalignment='bottom')
     # plot_target_sdk.axhline(30, ls='--', linewidth=1)
     # plot_target_sdk.text(0.5,30-0.5, "11", fontsize=8, horizontalalignment='center', verticalalignment='bottom')
@@ -153,4 +161,5 @@ def analyse_sdks(apps):
     fig.savefig(c.figures_path + 'target_sdk.pdf')
 
     # We reset the figure again
+    sns.reset_defaults()
     plot_target_sdk.get_figure().clf()
