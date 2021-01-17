@@ -124,7 +124,7 @@ def analyse_sdks(apps):
     # plot_min_sdk.text(0.5,30-0.5, "11", fontsize=8, horizontalalignment='center', verticalalignment='bottom')
     plot_min_sdk.annotate('Android versions', xy=(0.5, 6),  xycoords='data', xytext=(-55, 18), textcoords='offset points', size=12, ha='right', va="center", arrowprops=dict(arrowstyle="->", connectionstyle="angle,angleA=0,angleB=80,rad=20"))
     fig = plot_min_sdk.get_figure()
-    fig.savefig(c.figures_path + 'min_sdk.pdf')
+    fig.savefig(c.figures_path + 'min_sdk.png')
 
     # We reset again the figure
     plot_min_sdk.get_figure().clf()
@@ -158,7 +158,7 @@ def analyse_sdks(apps):
     # plot_target_sdk.text(0.5,30-0.5, "11", fontsize=8, horizontalalignment='center', verticalalignment='bottom')
     plot_target_sdk.annotate('Android versions', xy=(0.5, 6),  xycoords='data', xytext=(-55, 18), textcoords='offset points', size=12, ha='right', va="center", arrowprops=dict(arrowstyle="->", connectionstyle="angle,angleA=0,angleB=80,rad=20"))
     fig = plot_target_sdk.get_figure()
-    fig.savefig(c.figures_path + 'target_sdk.pdf')
+    fig.savefig(c.figures_path + 'target_sdk.png')
 
     # We reset the figure again
     sns.reset_defaults()
