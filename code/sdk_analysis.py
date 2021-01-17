@@ -126,7 +126,7 @@ def analyse_sdks(apps):
     fig = plot_min_sdk.get_figure()
     fig.savefig(c.figures_path + 'min_sdk.pdf')
 
-    # We reset the just-created figure so to do not have the subsequent plots on top of the old one
+    # We reset again the figure
     plot_min_sdk.get_figure().clf()
 
     plot_target_sdk = sns.boxplot(data=df, x="is_covid", y="target_sdk")

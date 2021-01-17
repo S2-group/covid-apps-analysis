@@ -58,15 +58,11 @@ def executeTTest(apps, components):
 def generateChart(apps, components):
     df = pd.DataFrame(apps)
     
-    # Align the colors to the other analyses
-    color_1 = '#FFFFB3'
-    color_2 = '#8DD2C7'
-    colors_list = [color_1, color_2]
-    sns.set_palette(sns.color_palette(colors_list))
-    
-    plot = sns.boxplot(data=df, x="is_covid", y="componentNumber")
+    #print(df.iloc[0, :])
+
+    plot = sns.boxplot(data=df, x="is_covid", y="componentNumber", palette="Set3")
     plot.set_xticklabels(['non-COVID', 'COVID'])
     plot.set(xlabel='', ylabel='Number of components')
     fig = plot.get_figure()
     fig.savefig(c.figures_path + 'componentNumber-receivers.pdf')
-    sns.reset_defaults()
+    plot.get_figure().clf()
