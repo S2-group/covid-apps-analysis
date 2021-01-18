@@ -64,5 +64,5 @@ def generateChart(apps, components):
     plot.set_xticklabels(['non-COVID', 'COVID'])
     plot.set(xlabel='', ylabel='Number of components')
     fig = plot.get_figure()
-    fig.savefig(c.figures_path + 'componentNumber-receivers.pdf')
+    fig.savefig(c.figures_path + 'componentNumber.png')
     plot.get_figure().clf()
