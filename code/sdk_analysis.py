@@ -89,16 +89,10 @@ def analyse_sdks(apps):
 
     df = pd.DataFrame(apps) 
 
-    # Align the colors to the other analyses
-    color_1 = '#FFFFB3'
-    color_2 = '#8DD2C7'
-    colors_list = [color_1, color_2]
-    sns.set_palette(sns.color_palette(colors_list))
-
-    plot_min_sdk = sns.boxplot(data=df, x="is_covid", y="min_sdk")
+    plot_min_sdk = sns.boxplot(data=df, x="is_covid", y="min_sdk", palette="Set3", order=[True, False])
     plot_min_sdk.yaxis.set_major_locator(ticker.MultipleLocator(1))
     plot_min_sdk.set(ylim=(0, 30))
-    plot_min_sdk.set_xticklabels(['non-COVID', 'COVID'])
+    plot_min_sdk.set_xticklabels(['COVID', 'non-COVID'])
     plot_min_sdk.set(xlabel='', ylabel='Minimum Android SDK version')
     plot_min_sdk.axhline(1, ls='--', linewidth=1, color='grey')
     plot_min_sdk.text(0.5,1-0.5, "1", fontsize=8, backgroundcolor='white', horizontalalignment='center', verticalalignment='bottom')
@@ -129,10 +123,10 @@ def analyse_sdks(apps):
     # We reset again the figure
     plot_min_sdk.get_figure().clf()
 
-    plot_target_sdk = sns.boxplot(data=df, x="is_covid", y="target_sdk")
+    plot_target_sdk = sns.boxplot(data=df, x="is_covid", y="target_sdk", palette="Set3", order=[True, False])
     plot_target_sdk.yaxis.set_major_locator(ticker.MultipleLocator(1))
     plot_target_sdk.set(ylim=(0, 30))
-    plot_target_sdk.set_xticklabels(['non-COVID', 'COVID'])
+    plot_target_sdk.set_xticklabels(['COVID', 'non-COVID'])
     plot_target_sdk.set(xlabel='', ylabel='Target Android SDK version')
     plot_target_sdk.axhline(1, ls='--', linewidth=1, color='grey')
     plot_target_sdk.text(0.5,1-0.5, "1", fontsize=8, backgroundcolor='white', horizontalalignment='center', verticalalignment='bottom')
