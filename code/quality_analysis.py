@@ -74,5 +74,5 @@ def analyse_quality(apps):
     plot(df, 'bugs', 'Number of bugs')
     plot(df, 'vulnerabilities', 'Number of vulnerabilities')
     plot(df, 'smells', 'Number of code smells')
-    plot(df, 'duplication', 'Level of code duplication')
+    plot(df, 'duplication', 'Percentage of duplicated code')
     plot(df, 'locs', 'Number of lines of code')
