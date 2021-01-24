@@ -51,6 +51,7 @@ def plot(df, var_name, label):
 
     values_covid = df[df['is_covid'] == True][var_name].tolist()
     values_non_covid = df[df['is_covid'] == False][var_name].tolist()
+
     stats, p = scipy.stats.mannwhitneyu(values_covid, values_non_covid, alternative='two-sided')
     print('P-value for the Mann-Whitney stat on variable ' + var_name + ': ' + str(p))
 
@@ -69,7 +70,11 @@ def analyse_quality(apps):
             app['locs'] = sq_results['locs']
     
     df = pd.DataFrame(apps) 
-    print(df.describe())
+
+    values_covid = df[df['is_covid'] == True]
+    values_non_covid = df[df['is_covid'] == False]
+    print(values_covid.describe())
+    print(values_non_covid.describe())
 
     plot(df, 'bugs', 'Number of bugs')
     plot(df, 'vulnerabilities', 'Number of vulnerabilities')
