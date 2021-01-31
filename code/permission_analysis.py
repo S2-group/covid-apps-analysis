@@ -9,6 +9,7 @@ import matplotlib.ticker as ticker
 import matplotlib.pyplot as plt
 import configuration as c
 from scipy.stats import wilcoxon
+import numpy as np
 
 all_apps_permissions_counts = []
 permission_counts_covid_apps = []
@@ -94,6 +95,10 @@ def generate_separate_bar_charts_of_permission_fequencies(top):
 
 def generate_combined_bar_chart_of_permission_fequencies(top='all'):
     permission_frequencies_df = pd.DataFrame({'covid':pd.Series(permission_frequencies_covid),'non_covid':pd.Series(permission_frequencies_non_covid)}).fillna(0)
+
+    permission_frequencies_df.covid = (permission_frequencies_df.covid / total_number_of_covid_apps * 100)
+    permission_frequencies_df.non_covid = (permission_frequencies_df.non_covid / total_number_of_non_covid_apps * 100)
+
     permission_frequencies_df = permission_frequencies_df.sort_values('covid', ascending=True)
     displayed_permissions = permission_frequencies_df if top=='all' else permission_frequencies_df.tail(top)
 
@@ -104,13 +109,14 @@ def generate_combined_bar_chart_of_permission_fequencies(top='all'):
     ax.barh([pos + width/2 for pos in positions], displayed_permissions['covid'], width, label='COVID', color=['#95cbc1'])
     ax.barh([pos - width/2 for pos in positions], displayed_permissions['non_covid'], width, label='Non-COVID', color=['#f6f6bd'])
 
-    ax.set_xlabel('Frequency (# of apps)')
+    ax.set_xlabel('Frequency (% of apps)')
     ax.set_ylabel('Permission')
+    ax.set_xticks(np.arange(0, 101, 10))
     ax.set_yticks(positions)
     ax.set_yticklabels(list(displayed_permissions.index))
     ax.legend()
 
-    fig.savefig(c.figures_path + str(top) + '_permission_frequencies_covid_and_non_covid.pdf', bbox_inches='tight')
+    fig.savefig(c.figures_path + str(top) + '_permission_frequencies_percentages_covid_and_non_covid.pdf', bbox_inches='tight')
 
     fig.clf()
 
@@ -240,8 +246,14 @@ def count_permissions_per_app_per_protection_level(app):
                 protection_level_app_permission_frequencies_non_covid[protection_level] = 1
 
 def generate_combined_bar_chart_of_app_protection_levels():
+    global total_number_of_covid_apps
+    global total_number_of_non_covid_apps
+
     protection_level_frequencies_df = pd.DataFrame({'covid':pd.Series(protection_level_app_frequencies_covid),'non_covid':pd.Series(protection_level_app_frequencies_non_covid)}).fillna(0)
     protection_level_frequencies_df = protection_level_frequencies_df.sort_values('covid', ascending=True)
+
+    protection_level_frequencies_df.covid = (protection_level_frequencies_df.covid / total_number_of_covid_apps * 100)
+    protection_level_frequencies_df.non_covid = (protection_level_frequencies_df.non_covid / total_number_of_non_covid_apps * 100)
 
     positions = list(range(len(protection_level_frequencies_df.index)))
     width = 0.35
@@ -250,13 +262,14 @@ def generate_combined_bar_chart_of_app_protection_levels():
     ax.barh([pos + width/2 for pos in positions], protection_level_frequencies_df['covid'], width, label='COVID', color=['#95cbc1'])
     ax.barh([pos - width/2 for pos in positions], protection_level_frequencies_df['non_covid'], width, label='Non-COVID', color=['#f6f6bd'])
 
-    ax.set_xlabel('Frequency (# of apps)')
+    ax.set_xlabel('Frequency (% of apps)')
     ax.set_ylabel('Protection level')
+    ax.set_xticks(np.arange(0, 101, 10))
     ax.set_yticks(positions)
     ax.set_yticklabels(list(protection_level_frequencies_df.index))
     ax.legend()
 
-    fig.savefig(c.figures_path + 'protection_levels_app_frequencies_covid_and_non_covid.pdf', bbox_inches='tight')
+    fig.savefig(c.figures_path + 'protection_levels_app_frequencies_percentages_covid_and_non_covid.pdf', bbox_inches='tight')
 
     fig.clf()
 
@@ -289,10 +302,20 @@ def generate_boxplots_of_protection_level_counts_per_app():
 
 # Analyze app permissions
 def analyse_permissions(apps):
+    global total_number_of_covid_apps
+    global total_number_of_non_covid_apps
+    total_number_of_covid_apps = 0
+    total_number_of_non_covid_apps = 0
+
     for app in apps:
         app['app_type'] = 'COVID' if app['is_covid'] else 'Non-COVID'
         app['permissions'] = app['androguard']['permissions']
         app['permission_count'] = len(app['permissions'])
+
+        if app['is_covid']:
+            total_number_of_covid_apps += 1
+        else:
+            total_number_of_non_covid_apps += 1
 
         count_permissions_per_app(app)
 
