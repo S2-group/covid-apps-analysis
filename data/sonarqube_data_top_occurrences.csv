@@ -1,0 +1,85 @@
+COVID APPS,,,
+BUG_NAME,BUGS,SMELL_NAME,SMELLS
+"Method parameters, caught exceptions and foreach variables' initial values should not be ignored",8155,Constant names should comply with a naming convention,72353
+Null pointers should not be dereferenced,7286,"Unused ""private"" fields should be removed",40496
+Variables should not be self-assigned,6540,Methods and field names should not be the same or differ only by capitalization,38494
+Identical expressions should not be used on both sides of a binary operator,2319,Class variable fields should not have public accessibility,36756
+"Non-primitive fields should not be ""volatile""",2261,Unused method parameters should be removed,36380
+Conditionally executed code should be reachable,1489,Class names should comply with a naming convention,35614
+Math operands should be cast before assignment,934,Unused assignments should be removed,34594
+Return values from functions without side effects should not be ignored,930,Raw types should not be used,30472
+Overrides should match their parent class methods in synchronization,426,String literals should not be duplicated,24235
+"""InterruptedException"" should not be ignored",402,Assignments should not be redundant,21668
+,,,
+NOT COVID APPS,,,
+BUG_NAME,BUGS,SMELL_NAME,SMELLS
+"Method parameters, caught exceptions and foreach variables' initial values should not be ignored",8198,Constant names should comply with a naming convention,86447
+Variables should not be self-assigned,7439,"Unused ""private"" fields should be removed",55212
+Null pointers should not be dereferenced,6683,Class names should comply with a naming convention,51051
+"Non-primitive fields should not be ""volatile""",3364,Unused method parameters should be removed,45034
+Conditionally executed code should be reachable,2003,Unused assignments should be removed,35966
+Math operands should be cast before assignment,937,Raw types should not be used,27962
+Return values from functions without side effects should not be ignored,832,String literals should not be duplicated,26630
+Overrides should match their parent class methods in synchronization,518,Assignments should not be redundant,24013
+"""InterruptedException"" should not be ignored",500,Sections of code should not be commented out,22631
+Return values should not be ignored when they contain the operation status code,456,Local variables should not shadow class fields,22251
+,,,
+COVID APPS,,NOT COVID APPS,
+at.roteskreuz.stopcorona___2.0.5.1081-QA_250,,at.credoweb.android___2.4.7,
+au.gov.act.health.checkin___1.3.2,,au.org.nps.medicinelistplus___3.2.7,
+au.gov.health.covidsafe___1.13.0,,au.org.pafoundation.ropah_guides___1.1,
+ca.albertahealthservices.contacttracing___1.4.0,,base.com.healthsite.queanbeyan___2.0,
+ca.bc.gov.health.hlbc.COVID19___1.27.0,,ca.gc.veterans.ptsd.ptsdcoach___2.0,
+ca.gc.hcsc.canada.covid19___4.11.0,,ca.on.ohcow.msda___1.0.5,
+cat.gencat.mobi.confinApp___1.0.0,,co.heydoctor.android___2.7.0,
+com.ambulis.aphm.covid___1.2.0,,co.uk.activa___2.4.0,
+com.coronacheck.haugxhaug.testyourcorona___1.1,,com.and.schedules.nwnc___1.0.6,
+com.designit.covid_19___1.0.0,,com.babylon.us___4.0.0.200054390,
+com.erictelm2m.colabora___4.1,,com.fitnessmobileapps.silenciobarcelona___4.2.9,
+com.intellicare.covid___1.0.17,,com.freestylelibre.app.us___2.2.2,
+com.myaus___38,,com.freestylelibre.app.us___2.5.2,
+com.netcompany.smittestop_exposure_notification___1.1,,com.imaidea.norgine.coloncop___1.0.1,
+com.proudcrowd.care___3.1,,com.mjn.us.hcp.productguide___1.0.1,
+com.proudcrowd.exposure___1.1,,com.motionvibe.calfit___4.8.13,
+com.siciliasicura.app___7.5,,com.motionvibe.calfit___4.8.3,
+de.kreativzirkel.coronika___1.6.0,,com.myhealthadvisor___3.0,
+de.rki.coronadatenspende___2.1.0,,de.credoweb.android___2.4.6,
+de.rki.coronawarnapp___1.5.0,,de.doctronic.mobilexaver.daz___2.3,
+es.gva.coronavirus___1.2.0,,de.healthlab.erkaeltung___1.4.4,
+es.gva.responde___1.0.10,,de.hector.clubapp.gym4all___2.8.3,
+es.navarra.coronatestnavarra___2.5,,de.hexal.pollenflug___2.7,
+fr.aphp.covidom___1.5.21,,de.hexal.pollenflug___2.8,
+fr.gouv.android.stopcovid___2.0.1,,de.mediafoundation.brbnorden___2.0.0,
+gov.cdc.general___3.1.1,,de.mediafoundation.brbnorden___2.0.1,
+gov.fema.mobile.android___2.11.1,,de.neurosys.patientconceptapp___4.19.5,
+gov.michigan.MiCovidExposure___1.0,,dk.kalorieopslag.symdir___2.0.7,
+gov.nv.dhhs.en___1.2.11,,es.bioderma.biodermagame___2.0.8,
+gov.vdh.exposurenotification___1.0,,es.gob.asistenciacovid19___1.3.1,
+is.landlaeknir.rakning___2.1.2,,es.infomed.agendamobile___1.0.0,
+it.adl.aslroma3.covid19.app___1.0.4,,es.jcajrc.ibolsatrabajosas20___2.1.99,
+it.lispa.sire.app.mobile.allertalom___1.7.0,,es.youaremarketing.alertaETS___6.1,
+it.ministerodellasalute.immuni___1.5.0,,fr.ap_hm.myaphm___1.2.0.0,
+it.softmining.projects.covid19.savelifestyle___5.1,,fr.infostrates.dailypso___2.0.3,
+jp.co.maff.maffapp___1.0.4,,fr.mesoigner.app___1.10.4,
+jp.go.mhlw.covid19radar___1.1.4,,gov.harriscountytx.harriscountypublichealth___4.1.0,
+net.hscni.covid19ni___2.0,,gov.hhs.samhsa.app.bullying___2.1,
+nl.focuscura.beeldbelapp___4.28.0,,gov.in.isdh.inwic___3.0,
+nl.rivm.lciapp___1.27.4,,gov.medicare.coverage___2.1.20,
+org.madrid.CoronaMadrid___1.1.0,,it.androweb.SexOS___2.0,
+org.pathcheck.guam.bt___1.0.5,,it.codeatlas.tmtworld.congress___1.0.5,
+org.who.infoapp___3.1,,it.dr.prontuariofarmaceutico___1.0,
+pt.min_saude.spms.mysns___1.5.0,,it.farmacialevorato___1.4.0,
+ru.altarix.mos.pgu___3.11.2.2,,it.fasv.videoinsight___2.0.4,
+ru.mos.app___1.7,,it.nealogic.energylive___2.2,
+ru.mos.polls___2.22.1,,it.xchannel.cnop___2.3.0,
+ru.mos.socmon___1.8,,jp.gr.java_conf.fum.android.stepwalk___3.44,
+,,jp.gr.java_conf.fum.android.stepwalk___3.45,
+,,nl.boomerweb.medicatiecontrolecross___1.14.2,
+,,nl.stichtingmelanoom.huidmonitor___1.1.4,
+,,pt.hospitaldaluz___2.73,
+,,ru.pharmbook.drugs.lite___1.7.11,
+,,ru.watchmyph.analogilekarstv___2.4.3,
+,,testje,
+,,uk.ac.dur.drex___2.0.1,
+,,uk.ac.dur.drex___2.1.0,
+,,us.visiomed.android.mytens___2.1.4,
