@@ -16,12 +16,14 @@ def setPaths(path):
     global DATA_PATH
     global APKS_PATH
     global REPORTS_PATH
+    global STATIC_RESOURCES_PATH
 
     if not path.endswith('/'):
         path = path + '/'
     GLOBAL_PATH = path
     APPS_PATH = path + 'apps.json'
     DATA_PATH = GLOBAL_PATH + 'data/'
+    STATIC_RESOURCES_PATH = path + 'code/static_resources/'
 
 # Downloads a remote resource pointed by url into path
 def download(url, path):
