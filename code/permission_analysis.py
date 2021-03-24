@@ -99,21 +99,21 @@ def generate_combined_bar_chart_of_permission_fequencies(top='all'):
     permission_frequencies_df.covid = (permission_frequencies_df.covid / total_number_of_covid_apps * 100)
     permission_frequencies_df.non_covid = (permission_frequencies_df.non_covid / total_number_of_non_covid_apps * 100)
 
-    permission_frequencies_df = permission_frequencies_df.sort_values('covid', ascending=True)
-    displayed_permissions = permission_frequencies_df if top=='all' else permission_frequencies_df.tail(top)
+    permission_frequencies_df = permission_frequencies_df.sort_values('covid', ascending=False)
+    displayed_permissions = permission_frequencies_df if top=='all' else permission_frequencies_df.head(top)
 
     positions = list(range(len(displayed_permissions.index)))
     width = 0.35
 
-    fig, ax = plt.subplots(figsize=(8, 5 + len(displayed_permissions.index)/6))
-    ax.barh([pos + width/2 for pos in positions], displayed_permissions['covid'], width, label='COVID', color=['#95cbc1'])
-    ax.barh([pos - width/2 for pos in positions], displayed_permissions['non_covid'], width, label='Non-COVID', color=['#f6f6bd'])
+    fig, ax = plt.subplots(figsize=(5, 4 + len(displayed_permissions.index)/6))
+    ax.bar([pos + width/2 for pos in positions], displayed_permissions['covid'], width, label='COVID', color=['#95cbc1'])
+    ax.bar([pos - width/2 for pos in positions], displayed_permissions['non_covid'], width, label='Non-COVID', color=['#f6f6bd'])
 
-    ax.set_xlabel('Frequency (% of apps)')
-    ax.set_ylabel('Permission')
-    ax.set_xticks(np.arange(0, 101, 10))
-    ax.set_yticks(positions)
-    ax.set_yticklabels(list(displayed_permissions.index))
+    ax.set_ylabel('Frequency (% of apps)')
+    ax.set_xlabel('Permission')
+    ax.set_yticks(np.arange(0, 101, 10))
+    ax.set_xticks(positions)
+    ax.set_xticklabels(list(displayed_permissions.index), rotation=30, ha="right")
     ax.legend()
 
     fig.savefig(c.figures_path + str(top) + '_permission_frequencies_percentages_covid_and_non_covid.pdf', bbox_inches='tight')
@@ -250,7 +250,7 @@ def generate_combined_bar_chart_of_app_protection_levels():
     global total_number_of_non_covid_apps
 
     protection_level_frequencies_df = pd.DataFrame({'covid':pd.Series(protection_level_app_frequencies_covid),'non_covid':pd.Series(protection_level_app_frequencies_non_covid)}).fillna(0)
-    protection_level_frequencies_df = protection_level_frequencies_df.sort_values('covid', ascending=True)
+    protection_level_frequencies_df = protection_level_frequencies_df.sort_values('covid', ascending=False)
 
     protection_level_frequencies_df.covid = (protection_level_frequencies_df.covid / total_number_of_covid_apps * 100)
     protection_level_frequencies_df.non_covid = (protection_level_frequencies_df.non_covid / total_number_of_non_covid_apps * 100)
@@ -258,15 +258,15 @@ def generate_combined_bar_chart_of_app_protection_levels():
     positions = list(range(len(protection_level_frequencies_df.index)))
     width = 0.35
 
-    fig, ax = plt.subplots(figsize=(8, 5 + len(protection_level_frequencies_df.index)/6))
-    ax.barh([pos + width/2 for pos in positions], protection_level_frequencies_df['covid'], width, label='COVID', color=['#95cbc1'])
-    ax.barh([pos - width/2 for pos in positions], protection_level_frequencies_df['non_covid'], width, label='Non-COVID', color=['#f6f6bd'])
+    fig, ax = plt.subplots(figsize=(5, 5 + len(protection_level_frequencies_df.index)/6))
+    ax.bar([pos + width/2 for pos in positions], protection_level_frequencies_df['covid'], width, label='COVID', color=['#95cbc1'])
+    ax.bar([pos - width/2 for pos in positions], protection_level_frequencies_df['non_covid'], width, label='Non-COVID', color=['#f6f6bd'])
 
-    ax.set_xlabel('Frequency (% of apps)')
-    ax.set_ylabel('Protection level')
-    ax.set_xticks(np.arange(0, 101, 10))
-    ax.set_yticks(positions)
-    ax.set_yticklabels(list(protection_level_frequencies_df.index))
+    ax.set_ylabel('Frequency (% of apps)')
+    ax.set_xlabel('Protection level')
+    ax.set_yticks(np.arange(0, 101, 10))
+    ax.set_xticks(positions)
+    ax.set_xticklabels(list(protection_level_frequencies_df.index), rotation=30, ha="right")
     ax.legend()
 
     fig.savefig(c.figures_path + 'protection_levels_app_frequencies_percentages_covid_and_non_covid.pdf', bbox_inches='tight')
@@ -290,13 +290,15 @@ def generate_boxplots_of_protection_level_counts_per_app():
     # Added this order manually to make the plot looks better 
     only_these_protection_levels = ['normal', 'dangerous', 'undefined', 'signature', 'signature | [others]', 'Deprecated', 'Not for third-party apps']
     
-    boxplot_num_protection_levels = sns.boxplot(data=protection_levels_df_all, y="protection_level", x="number_of_permissions", hue="app_type", palette="Set3", orient = 'h', order=only_these_protection_levels)
-    boxplot_num_protection_levels.set(xlim=(-1, 25), xlabel='# of permissions per app', ylabel='Protection levels')
-    plt.legend(loc='lower right')
+    boxplot_num_protection_levels = sns.boxplot(data=protection_levels_df_all, x="protection_level", y="number_of_permissions", hue="app_type", palette="Set3", orient = 'v', order=only_these_protection_levels)
+    boxplot_num_protection_levels.set(ylim=(-1, 25), ylabel='# of permissions per app', xlabel='Protection levels')
+    plt.legend(loc='upper right')
     #boxplot_num_protection_levels.set_xticklabels(boxplot_num_protection_levels.get_xticklabels(), rotation=90) # for vertical boxplots
     boxplot_num_protection_levels.legend_.set_title(None)
+    boxplot_num_protection_levels.set_xticklabels(boxplot_num_protection_levels.get_xticklabels(), rotation=30, ha="center")
     fig = boxplot_num_protection_levels.get_figure()
-    fig.set_size_inches(8, 5)
+    fig.set_size_inches(5, 6)
+
     fig.savefig(c.figures_path + 'num_protection_levels.pdf', bbox_inches='tight')
     fig.clf()
 
