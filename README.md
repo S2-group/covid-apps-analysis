@@ -6,6 +6,15 @@ The full dataset including raw data and analysis scripts produced during the stu
 
 All data has been mined by using the [COVID apps observer](https://github.com/iivanoo/covid-apps-observer) open-source tool.
 
+This study has been designed, developed, and reported by the following investigators:
+- Ivano Malavolta (Vrije Universiteit Amsterdam, the Netherlands)
+- Taher Ahmed Ghaleb (School of Computing, Queen’s University, Kingston, Canada)
+- Istvan David (Université de Montréal, Canada)
+- Jasper van Rooijen (University of Twente, the Netherlands)
+- Marielle Stoelinga (University of Twente and Radboud University, the Netherlands)
+
+For any information, interested researchers can contact us by sending an email to any of the investigators listed above.
+
 Below we report the complete list of the analyzed apps.
 
 | **App ID** | **Version** | **Type** | **Category** | **Country** | **Metadata** | **Androwarn results** | **Analysis timestamp** |
