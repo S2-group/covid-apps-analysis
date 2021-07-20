@@ -2,9 +2,7 @@
 
 Replication package for the paper on COVID apps analysis  (unde revision).
 
-The full dataset including raw data and analysis scripts produced during the study are available below.
-
-All data has been mined by using the [COVID apps observer](https://github.com/iivanoo/covid-apps-observer) open-source tool.
+The full dataset including raw data and analysis scripts produced during the study are available in this repository. All data has been mined by using the [COVID apps observer](https://github.com/iivanoo/covid-apps-observer) open-source tool.
 
 This study has been designed, developed, and reported by the following investigators:
 - Ivano Malavolta (Vrije Universiteit Amsterdam, the Netherlands)
