@@ -1,5 +1,13 @@
 # covid-apps-analysis
 
+Replication package for the paper on COVID apps analysis  (unde revision).
+
+The full dataset including raw data and analysis scripts produced during the study are available below.
+
+All data has been mined by using the [COVID apps observer](https://github.com/iivanoo/covid-apps-observer) open-source tool.
+
+Below we report the complete list of the analyzed apps.
+
 | **App ID** | **Version** | **Type** | **Category** | **Country** | **Metadata** | **Androwarn results** | **Analysis timestamp** |
 |-------------------------|-------------------------|-------------------------|-------------------------|-------------------------|-------------------------|-------------------------|-------------------------|
 at.roteskreuz.stopcorona | 2.0.5.1081-QA_250 | COVID-19 app | MEDICAL | at | [../main/data/at.roteskreuz.stopcorona___2.0.5.1081-QA_250___metadata.json](../main/data/at.roteskreuz.stopcorona___2.0.5.1081-QA_250___metadata.json) | [../main/data/at.roteskreuz.stopcorona___2.0.5.1081-QA_250___androwarn.json](../main/data/at.roteskreuz.stopcorona___2.0.5.1081-QA_250___androwarn.json) | :calendar: 1603527475
