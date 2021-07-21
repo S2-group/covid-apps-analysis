@@ -8,7 +8,7 @@ import seaborn as sns
 import matplotlib.ticker as ticker
 import matplotlib.pyplot as plt
 import configuration as c
-from scipy.stats import wilcoxon
+from scipy.stats import mannwhitneyu
 import numpy as np
 
 all_apps_permissions_counts = []
@@ -61,6 +61,7 @@ def compute_median_number_of_permissions(df):
 def generate_boxplots_of_permission_counts_per_app(df):
     #### Boxplot of the number of permissions of COVID and Non-COVID apps ####
     boxplot_num_permissions = sns.boxplot(data=df, x="app_type", y="permission_count", palette="Set3")
+
     boxplot_num_permissions.yaxis.set_major_locator(ticker.MultipleLocator(1))
     boxplot_num_permissions.set(ylim=(0, max(all_apps_permissions_counts)), xlabel='Apps', ylabel='# of permissions')
     fig = boxplot_num_permissions.get_figure()
@@ -68,6 +69,11 @@ def generate_boxplots_of_permission_counts_per_app(df):
     fig.savefig(c.figures_path + 'num_permissions.pdf')
     
     fig.clf()
+
+    # Run Mann-Whitney U test
+    mann_test = mannwhitneyu(list(df[df['app_type'] == 'COVID']['permission_count']), list(df[df['app_type'] == 'Non-COVID']['permission_count']))
+    permissions_stats_file.write("App level:\n  Mann-Whitney U test p-value:" + str(mann_test.pvalue))
+    permissions_stats_file.write("\n-------------------------------------\n")
 
 def generate_separate_bar_charts_of_permission_fequencies(top):
     sorted_permission_frequencies_covid = sort_dictionary(permission_frequencies_covid, 1) 
@@ -150,9 +156,9 @@ def measure_difference_in_permission_frequencies():
     all_permissions_covid = sort_dictionary(all_permissions_covid, 0)
     all_permissions_non_covid = sort_dictionary(all_permissions_non_covid, 0)
     
-    # Run Wilcoxon signed-sum test
-    wilcox = wilcoxon(list(all_permissions_covid.values()), list(all_permissions_non_covid.values()), correction=True)
-    permissions_stats_file.write("Permission frequencies:\nwilcoxon signed-rank test p-value:" + str(wilcox.pvalue))
+    # Run Mann-Whitney U test
+    mann_test = mannwhitneyu(list(all_permissions_covid.values()), list(all_permissions_non_covid.values()))
+    permissions_stats_file.write("Permission level:\n  Mann-Whitney U test p-value:" + str(mann_test.pvalue))
     permissions_stats_file.write("\n-------------------------------------\n")
 
 def extract_protection_levels_of_permissions():
